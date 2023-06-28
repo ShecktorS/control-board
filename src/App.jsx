@@ -3,17 +3,28 @@ import styles from "./App.module.scss";
 
 // ------import pages and components-------
 import LoginPage from "./pages/loginPage";
+import BoardPage from "./pages/boardPage";
 
 function App() {
-  const [isLogged, setIsLogged] = useState(false);
+  const [personContext, setPersonContext] = useState({
+    name: "",
+    password: "",
+    isLogged: false,
+    type: null,
+  });
   return (
     <div className={styles.App}>
-      {!isLogged ? (
+      {!personContext.isLogged ? (
         <>
-          <LoginPage />
+          <LoginPage
+            setPersonContext={setPersonContext}
+            personContext={personContext}
+          />
         </>
       ) : (
-        <h1>Board</h1>
+        <>
+          <BoardPage personContext={personContext} />
+        </>
       )}
     </div>
   );

@@ -1,10 +1,13 @@
 import styles from "./index.module.scss";
 import Login from "../../components/login";
 
-const LoginPage = () => {
+const LoginPage = ({ setPersonContext, personContext }) => {
   return (
     <div className={styles.LoginPage}>
-      <Login />
+      <Login
+        setPersonContext={setPersonContext}
+        personContext={personContext}
+      />
     </div>
   );
 };

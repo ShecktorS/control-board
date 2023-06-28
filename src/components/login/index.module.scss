@@ -21,6 +21,13 @@
     width: 90%;
     font-size: 1em;
   }
+  span {
+    width: 90%;
+    text-align: end;
+    color: rgb(59, 59, 243);
+    font-weight: bold;
+    cursor: pointer;
+  }
 
   .username,
   .password {
