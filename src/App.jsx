@@ -1,13 +1,20 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import styles from "./App.module.scss";
 
+// ------import pages and components-------
+import LoginPage from "./pages/loginPage";
+
 function App() {
+  const [isLogged, setIsLogged] = useState(false);
   return (
     <div className={styles.App}>
-      <h1>Login</h1>
-      <h1>Board</h1>
+      {!isLogged ? (
+        <>
+          <LoginPage />
+        </>
+      ) : (
+        <h1>Board</h1>
+      )}
     </div>
   );
 }
