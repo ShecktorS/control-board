@@ -1,4 +1,71 @@
 .Board {
-  border: solid red 1px;
   width: 100%;
+  position: relative;
+
+  section {
+    box-sizing: border-box;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .productsList {
+    position: absolute;
+    top: 0;
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+    margin-top: 20px;
+
+    div {
+      border: solid black 1px;
+      margin-bottom: 20px;
+      height: 100px;
+      border-radius: 20px;
+      border-top: none;
+      border-right: none;
+
+      display: flex;
+      align-items: center;
+      gap: 30px;
+
+      img {
+        box-sizing: border-box;
+        height: 90%;
+        width: 80px;
+        padding: 20px;
+        object-fit: contain;
+      }
+
+      h4 {
+        max-width: 500px;
+      }
+
+      .price {
+        padding: 10px;
+        flex-grow: 1;
+        text-align: end;
+      }
+    }
+
+    .closeProductsList {
+      position: fixed;
+      top: 120px;
+      right: 70px;
+
+      height: 50px;
+      width: 50px;
+
+      border-radius: 50%;
+      cursor: pointer;
+      background-color: #63c2c2;
+      color: white;
+      border: none;
+      text-align: center;
+      font-weight: bold;
+    }
+  }
 }

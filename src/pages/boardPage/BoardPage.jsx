@@ -21,15 +21,17 @@ const BoardPage = ({ personContext }) => {
           {personContext.name}
         </span>
       </h1>
-      {loader ? (
-        <p style={{ textAlign: "center", fontSize: "2em" }}>Caricamento...</p>
-      ) : (
-        <section className={styles.centralSection}>
-          <Sidebar />
-          <hr />
-          <Board />
-        </section>
-      )}
+      <section className={styles.centralSection}>
+        <Sidebar />
+        {loader ? (
+          <p style={{ fontSize: "2em" }}>Caricamento...</p>
+        ) : (
+          <>
+            <hr />
+            <Board />
+          </>
+        )}
+      </section>
     </div>
   );
 };

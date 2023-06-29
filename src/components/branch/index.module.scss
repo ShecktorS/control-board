@@ -1,0 +1,39 @@
+.Branch {
+  border: none;
+  height: 200px;
+  width: 300px;
+  position: relative;
+  cursor: pointer;
+  transition: 0.4s;
+  background: linear-gradient(#ecf1f8, #a6c2ee);
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.35);
+
+  h1,
+  h3 {
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 1.3em;
+  }
+
+  hr {
+    width: 80%;
+  }
+
+  h3 {
+    font-size: 1em;
+    margin-top: 0;
+  }
+
+  p {
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+  }
+
+  &:hover {
+    transform: scale(0.9);
+  }
+}

@@ -9,6 +9,8 @@
       cursor: pointer;
       border-bottom: solid 1px black;
       border-right: solid 1px black;
+      border-radius: 10px;
+      border-bottom-left-radius: 0;
 
       &:hover {
         color: blue;
