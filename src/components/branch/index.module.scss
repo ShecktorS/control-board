@@ -36,4 +36,19 @@
   &:hover {
     transform: scale(0.9);
   }
+
+  button {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    height: 30px;
+    width: 80px;
+    background-color: #ecf1f8;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      color: blue;
+    }
+  }
 }

@@ -28,7 +28,7 @@ const BoardPage = ({ personContext }) => {
         ) : (
           <>
             <hr />
-            <Board />
+            <Board personContext={personContext} />
           </>
         )}
       </section>

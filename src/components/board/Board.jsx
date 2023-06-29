@@ -2,8 +2,9 @@ import { Fragment, useEffect, useState } from "react";
 import styles from "./index.module.scss";
 
 import Branch from "../branch";
+import ModalForm from "../modalForm";
 
-const Board = () => {
+const Board = ({ personContext }) => {
   const [products, setProducts] = useState([]);
   const [branches, setBranches] = useState([
     {
@@ -30,6 +31,7 @@ const Board = () => {
     isVisible: false,
     branch: "",
   });
+  const [formIsVisible, setFormIsVisible] = useState(false);
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -47,14 +49,21 @@ const Board = () => {
             ? products.filter((element) => element.category == item.category)
             : products)
     );
-  }, [products]);
+  }, [products, branches]);
 
   return (
     <div className={styles.Board}>
-      <h1 onClick={() => console.table(products)}>Prodotti</h1>
+      <h1 onClick={() => console.log(products, branches)}>Prodotti</h1>
       <section>
+        {branches.length < 1 && <h2>Non è presente alcuno store!</h2>}
         {branches.map((item, i) => (
-          <Branch setProductsContext={setProductsContext} data={item} key={i} />
+          <Branch
+            setBranches={setBranches}
+            personContext={personContext}
+            setProductsContext={setProductsContext}
+            data={item}
+            key={i}
+          />
         ))}
       </section>
       {productsContext.isVisible && (
@@ -78,6 +87,10 @@ const Board = () => {
           </button>
         </div>
       )}
+      <div className={styles.addStoreBtn}>
+        <button onClick={() => setFormIsVisible((prev) => !prev)}>➕</button>
+      </div>
+      {formIsVisible && <ModalForm setBranches={setBranches} />}
     </div>
   );
 };

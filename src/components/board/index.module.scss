@@ -1,6 +1,7 @@
 .Board {
   width: 100%;
   position: relative;
+  border: solid red 1px;
 
   section {
     box-sizing: border-box;
@@ -19,6 +20,7 @@
     width: 100%;
     overflow-y: scroll;
     margin-top: 20px;
+    z-index: 5;
 
     div {
       border: solid black 1px;
@@ -66,6 +68,27 @@
       border: none;
       text-align: center;
       font-weight: bold;
+    }
+  }
+
+  .addStoreBtn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    background: linear-gradient(#ecf1f8, #a6c2ee);
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.35);
+
+    button {
+      height: 50px;
+      width: 50px;
+      border-radius: 20px;
+      border: none;
+      background-color: aliceblue;
+      cursor: pointer;
     }
   }
 }
