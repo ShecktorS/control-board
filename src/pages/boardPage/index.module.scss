@@ -1,2 +1,18 @@
 .BoardPage {
+  .header {
+    height: 60px;
+    text-align: end;
+    padding-right: 30px;
+    border-bottom: 1px solid black;
+
+    span {
+      text-transform: capitalize;
+    }
+  }
+
+  .centralSection {
+    display: flex;
+    gap: 25px;
+    height: 80vh;
+  }
 }

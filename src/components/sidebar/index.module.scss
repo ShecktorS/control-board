@@ -1,0 +1,21 @@
+.Sidebar {
+  height: 400px;
+  width: 300px;
+
+  ul {
+    li {
+      margin-bottom: 50px;
+      list-style-type: none;
+      cursor: pointer;
+      border-bottom: solid 1px black;
+      border-right: solid 1px black;
+
+      &:hover {
+        color: blue;
+        font-weight: bold;
+        border-bottom: hidden;
+        border-right: hidden;
+      }
+    }
+  }
+}
