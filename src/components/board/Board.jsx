@@ -71,18 +71,22 @@ const Board = ({ personContext }) => {
 
   return (
     <div className={styles.Board}>
-      <h1 onClick={() => console.log(products, branches)}>Prodotti</h1>
+      <h1>Prodotti</h1>
       <section>
         {branches.length < 1 && <h2>Non è presente alcuno store!</h2>}
-        {branches.map((item, i) => (
-          <Branch
-            setBranches={setBranches}
-            personContext={personContext}
-            setProductsContext={setProductsContext}
-            data={item}
-            key={i}
-          />
-        ))}
+        {!formIsVisible && (
+          <>
+            {branches.map((item, i) => (
+              <Branch
+                setBranches={setBranches}
+                personContext={personContext}
+                setProductsContext={setProductsContext}
+                data={item}
+                key={i}
+              />
+            ))}
+          </>
+        )}
       </section>
 
       {productsContext.isVisible && (

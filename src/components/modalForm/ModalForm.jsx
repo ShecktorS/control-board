@@ -33,6 +33,7 @@ const ModalForm = ({ setBranches, setFormIsVisible }) => {
   return (
     <div className={styles.ModalForm}>
       <form onSubmit={onHandelSubmit}>
+        <label htmlFor="store-name">Nome dello Store</label>
         <input
           type="text"
           name="store-name"
@@ -43,6 +44,7 @@ const ModalForm = ({ setBranches, setFormIsVisible }) => {
           }
           required
         />
+        <label htmlFor="location">Città</label>
         <input
           type="text"
           name="location"
@@ -53,6 +55,7 @@ const ModalForm = ({ setBranches, setFormIsVisible }) => {
           }
           required
         />
+        <label htmlFor="category">Categoria</label>
         <select
           onChange={(e) =>
             setBranchContext({

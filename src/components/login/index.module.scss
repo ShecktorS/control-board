@@ -1,6 +1,8 @@
 .Login {
   height: 500px;
   width: 400px;
+  background-color: $secondary-button;
+
   border-radius: 20px;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
 
@@ -12,7 +14,6 @@
 
   h3 {
     font-size: 1.5em;
-    color: black;
   }
 
   input {
@@ -20,11 +21,14 @@
     height: 40px;
     width: 90%;
     font-size: 1em;
+    border-radius: 10px;
+    font-weight: bold;
+    color: $primary;
   }
   span {
     width: 90%;
     text-align: end;
-    color: rgb(59, 59, 243);
+    color: $accent;
     font-weight: bold;
     cursor: pointer;
   }
@@ -32,7 +36,7 @@
   .username,
   .password {
     padding-left: 10px;
-    outline-color: darkcyan;
+    outline-color: $primary-button;
   }
 
   input:nth-last-child(1) {
@@ -40,12 +44,12 @@
     width: 70%;
     border-radius: 20px;
     border: none;
-    background-color: darkcyan;
+    background-color: $primary-button;
     color: white;
     cursor: pointer;
 
     &:hover {
-      background-color: rgb(2, 162, 162);
+      background-color: $primary-button-light;
     }
   }
 }

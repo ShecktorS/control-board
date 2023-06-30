@@ -7,14 +7,16 @@
       margin-bottom: 50px;
       list-style-type: none;
       cursor: pointer;
-      border-bottom: solid 1px black;
-      border-right: solid 1px black;
+      border-bottom: solid 1px $primary;
+      border-right: solid 1px $primary;
       border-radius: 10px;
       border-bottom-left-radius: 0;
+      letter-spacing: 2px;
+      transition: all 0.35s ease;
 
       &:hover {
-        color: blue;
-        font-weight: bold;
+        color: $accent;
+        transform: scale(1.1);
         border-bottom: hidden;
         border-right: hidden;
       }

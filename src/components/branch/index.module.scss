@@ -5,7 +5,8 @@
   position: relative;
   cursor: pointer;
   transition: 0.4s;
-  background: linear-gradient(#ecf1f8, #a6c2ee);
+  background-color: $primary-alpha;
+  color: $primary;
   border-radius: 20px;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.35);
 
@@ -35,6 +36,10 @@
 
   &:hover {
     transform: scale(0.9);
+
+    button {
+      color: $accent;
+    }
   }
 
   button {
@@ -43,12 +48,7 @@
     left: 0;
     height: 30px;
     width: 80px;
-    background-color: #ecf1f8;
     border: none;
     cursor: pointer;
-
-    &:hover {
-      color: blue;
-    }
   }
 }

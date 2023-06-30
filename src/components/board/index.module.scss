@@ -1,7 +1,10 @@
 .Board {
   width: 100%;
   position: relative;
-  border: solid red 1px;
+
+  &:nth-of-type(1) {
+    font-size: 2.5em;
+  }
 
   section {
     box-sizing: border-box;
@@ -16,7 +19,8 @@
     box-sizing: border-box;
     position: absolute;
     top: 0;
-    background-color: white;
+    background-color: $primary-alpha;
+    backdrop-filter: blur(10px);
     padding: 20px;
     height: 100%;
     width: 90%;
@@ -26,6 +30,7 @@
 
     div {
       border: solid black 1px;
+      background-color: $secondary;
       margin-bottom: 20px;
       height: 100px;
       border-radius: 20px;
@@ -78,15 +83,16 @@
 
     .closeProductsList {
       position: fixed;
-      top: 120px;
+      top: 100px;
       right: 70px;
+      z-index: 10;
 
       height: 50px;
       width: 50px;
 
       border-radius: 50%;
       cursor: pointer;
-      background-color: #63c2c2;
+      background-color: $primary-button;
       color: white;
       border: none;
       text-align: center;
@@ -102,16 +108,26 @@
     margin: 20px;
     padding: 20px;
     border-radius: 20px;
-    background: linear-gradient(#ecf1f8, #a6c2ee);
+    background-color: $secondary;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.35);
+    transition: all 0.4s ease;
+
+    &:hover {
+      transform: scale(1.1);
+
+      button {
+        transform: scale(1.4);
+      }
+    }
 
     button {
       height: 50px;
       width: 50px;
       border-radius: 20px;
       border: none;
-      background-color: aliceblue;
+      background-color: $primary-alpha;
       cursor: pointer;
+      transition: all 0.3s ease;
     }
   }
 }
