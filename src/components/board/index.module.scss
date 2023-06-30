@@ -13,11 +13,13 @@
   }
 
   .productsList {
+    box-sizing: border-box;
     position: absolute;
     top: 0;
     background-color: white;
+    padding: 20px;
     height: 100%;
-    width: 100%;
+    width: 90%;
     overflow-y: scroll;
     margin-top: 20px;
     z-index: 5;
@@ -33,6 +35,27 @@
       display: flex;
       align-items: center;
       gap: 30px;
+
+      .deleteProduct {
+        width: 0px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        cursor: pointer;
+
+        &:hover {
+          color: blue;
+        }
+      }
+
+      &:hover {
+        .deleteProduct {
+          width: 100px;
+        }
+      }
+
+      h1 {
+        width: 200px;
+      }
 
       img {
         box-sizing: border-box;

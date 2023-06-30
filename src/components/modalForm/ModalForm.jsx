@@ -1,10 +1,10 @@
 import styles from "./index.module.scss";
 import { useState } from "react";
 
-const ModalForm = ({ setBranches }) => {
+const ModalForm = ({ setBranches, setFormIsVisible }) => {
   const category = [
     "all",
-    "eletronics",
+    "electronics",
     "jewelery",
     "men's clothing",
     "women's clothing",
@@ -12,19 +12,27 @@ const ModalForm = ({ setBranches }) => {
 
   const [branchContext, setBranchContext] = useState({
     name: "",
-    category: "",
+    category: "all",
     location: "",
     products: [],
   });
 
+  const onHandelSubmit = (e) => {
+    e.preventDefault();
+    setBranches((prev) => [...prev, branchContext]);
+    setBranchContext({
+      name: "",
+      category: "",
+      location: "",
+      products: [],
+    });
+    setFormIsVisible((prev) => !prev);
+    console.log(branchContext);
+  };
+
   return (
     <div className={styles.ModalForm}>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          setBranches((prev) => [...prev, branchContext]);
-        }}
-      >
+      <form onSubmit={onHandelSubmit}>
         <input
           type="text"
           name="store-name"
@@ -45,9 +53,21 @@ const ModalForm = ({ setBranches }) => {
           }
           required
         />
-        <select name="" id="" required>
-          {category.map((item) => (
-            <option value={item}>{item}</option>
+        <select
+          onChange={(e) =>
+            setBranchContext({
+              ...branchContext,
+              category: e.target.value,
+            })
+          }
+          name="category"
+          id="category"
+          required
+        >
+          {category.map((item, i) => (
+            <option key={i} value={item}>
+              {item}
+            </option>
           ))}
         </select>
         <input type="submit" value="AGGIUNGI" />

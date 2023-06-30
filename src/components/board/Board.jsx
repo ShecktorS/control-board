@@ -42,14 +42,17 @@ const Board = ({ personContext }) => {
   }, []);
 
   useEffect(() => {
-    branches.map(
-      (item) =>
-        (item.products =
-          item.category !== "all"
-            ? products.filter((element) => element.category == item.category)
-            : products)
-    );
-  }, [products, branches]);
+    branches
+      //----Questa condizione permette di lasciare l'array dei prodotti per com'è quando è già stato riempito
+      .filter((branch) => branch.products.length < 1)
+      .map(
+        (item) =>
+          (item.products =
+            item.category !== "all"
+              ? products.filter((element) => element.category == item.category)
+              : products)
+      );
+  }, [products, formIsVisible]);
 
   return (
     <div className={styles.Board}>
@@ -70,10 +73,11 @@ const Board = ({ personContext }) => {
         <div className={styles.productsList}>
           {productsContext.payload.map((product) => (
             <div>
-              <h1>---{productsContext.branch}---</h1>
+              <h1>-{productsContext.branch}-</h1>
               <img src={product.image} />
               <p>#{product.id}</p>
               <h4>{product.title}</h4>
+              <p className={styles.deleteProduct}>cancella</p>
               <p className={styles.price}>€{product.price}</p>
             </div>
           ))}
@@ -90,7 +94,12 @@ const Board = ({ personContext }) => {
       <div className={styles.addStoreBtn}>
         <button onClick={() => setFormIsVisible((prev) => !prev)}>➕</button>
       </div>
-      {formIsVisible && <ModalForm setBranches={setBranches} />}
+      {formIsVisible && (
+        <ModalForm
+          setFormIsVisible={setFormIsVisible}
+          setBranches={setBranches}
+        />
+      )}
     </div>
   );
 };
