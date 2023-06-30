@@ -5,6 +5,21 @@ import Branch from "../branch";
 import ModalForm from "../modalForm";
 
 const Board = ({ personContext }) => {
+  //Funzione per l'eliminazione dei prodotti all'interno del branch
+  const deleteProduct = (productId, branchName) => {
+    setBranches((prev) =>
+      prev.map((branch) => {
+        if (branch.name === branchName) {
+          const updatedProducts = branch.products.filter(
+            (product) => product.id !== productId
+          );
+          return { ...branch, products: updatedProducts };
+        }
+        return branch;
+      })
+    );
+  };
+
   const [products, setProducts] = useState([]);
   const [branches, setBranches] = useState([
     {
@@ -69,18 +84,41 @@ const Board = ({ personContext }) => {
           />
         ))}
       </section>
+
       {productsContext.isVisible && (
         <div className={styles.productsList}>
-          {productsContext.payload.map((product) => (
-            <div>
-              <h1>-{productsContext.branch}-</h1>
-              <img src={product.image} />
-              <p>#{product.id}</p>
-              <h4>{product.title}</h4>
-              <p className={styles.deleteProduct}>cancella</p>
-              <p className={styles.price}>€{product.price}</p>
-            </div>
-          ))}
+          {productsContext.payload.length < 1 ? (
+            <>
+              <h3>Non è presente alcun prodotto</h3>
+              <p>Per favore, elimina questo store.</p>
+            </>
+          ) : (
+            <>
+              {productsContext.payload.map((product) => (
+                <div key={product.id}>
+                  <h1>-{productsContext.branch}-</h1>
+                  <img src={product.image} />
+                  <p>#{product.id}</p>
+                  <h4>{product.title}</h4>
+                  <p
+                    onClick={() => {
+                      deleteProduct(product.id, productsContext.branch);
+                      setProductsContext({
+                        ...productsContext,
+                        payload: productsContext.payload.filter(
+                          (item) => item.id != product.id
+                        ),
+                      });
+                    }}
+                    className={styles.deleteProduct}
+                  >
+                    cancella
+                  </p>
+                  <p className={styles.price}>€{product.price}</p>
+                </div>
+              ))}{" "}
+            </>
+          )}
           <button
             onClick={() =>
               setProductsContext({ ...productsContext, isVisible: false })
