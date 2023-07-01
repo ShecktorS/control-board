@@ -73,7 +73,10 @@ const ModalForm = ({ setBranches, setFormIsVisible }) => {
             </option>
           ))}
         </select>
-        <input type="submit" value="AGGIUNGI" />
+        <div>
+          <input type="submit" value="AGGIUNGI" />
+          <hr />
+        </div>
       </form>
     </div>
   );

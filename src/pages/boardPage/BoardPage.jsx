@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 
 import Board from "../../components/board";
 import Sidebar from "../../components/sidebar";
+import Loader from "../../components/loader";
 
 const BoardPage = ({ personContext }) => {
   const [loader, setLoader] = useState(true);
@@ -16,7 +17,7 @@ const BoardPage = ({ personContext }) => {
   return (
     <div className={styles.BoardPage}>
       <h1 className={styles.header}>
-        Welcome{" "}
+        Benvenuto{" "}
         <span style={{ textDecoration: "underline" }}>
           {personContext.name}
         </span>
@@ -24,7 +25,7 @@ const BoardPage = ({ personContext }) => {
       <section className={styles.centralSection}>
         <Sidebar />
         {loader ? (
-          <p style={{ fontSize: "2em" }}>Caricamento...</p>
+          <Loader />
         ) : (
           <>
             <hr />

@@ -71,7 +71,7 @@ const Board = ({ personContext }) => {
 
   return (
     <div className={styles.Board}>
-      <h1>Prodotti</h1>
+      <h1 className={styles.branches}>Store</h1>
       <section>
         {branches.length < 1 && <h2>Non è presente alcuno store!</h2>}
         {!formIsVisible && (
@@ -104,20 +104,24 @@ const Board = ({ personContext }) => {
                   <img src={product.image} />
                   <p>#{product.id}</p>
                   <h4>{product.title}</h4>
-                  <p
-                    onClick={() => {
-                      deleteProduct(product.id, productsContext.branch);
-                      setProductsContext({
-                        ...productsContext,
-                        payload: productsContext.payload.filter(
-                          (item) => item.id != product.id
-                        ),
-                      });
-                    }}
-                    className={styles.deleteProduct}
-                  >
-                    cancella
-                  </p>
+
+                  {personContext.type === "admin" && (
+                    <p
+                      onClick={() => {
+                        deleteProduct(product.id, productsContext.branch);
+                        setProductsContext({
+                          ...productsContext,
+                          payload: productsContext.payload.filter(
+                            (item) => item.id != product.id
+                          ),
+                        });
+                      }}
+                      className={styles.deleteProduct}
+                    >
+                      elimina
+                    </p>
+                  )}
+
                   <p className={styles.price}>€{product.price}</p>
                 </div>
               ))}{" "}
@@ -133,9 +137,12 @@ const Board = ({ personContext }) => {
           </button>
         </div>
       )}
-      <div className={styles.addStoreBtn}>
-        <button onClick={() => setFormIsVisible((prev) => !prev)}>➕</button>
-      </div>
+      {personContext.type === "admin" && (
+        <div className={styles.addStoreBtn}>
+          <button onClick={() => setFormIsVisible((prev) => !prev)}>➕</button>
+        </div>
+      )}
+
       {formIsVisible && (
         <ModalForm
           setFormIsVisible={setFormIsVisible}

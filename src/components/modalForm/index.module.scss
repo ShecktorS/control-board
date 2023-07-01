@@ -1,2 +1,62 @@
 .ModalForm {
+  height: 450px;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  form {
+    height: 400px;
+    width: 300px;
+    border-radius: 20px;
+    background-color: $secondary-button;
+    box-shadow: 5px 5px 5px $primary-alpha;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    input,
+    select {
+      height: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+    }
+
+    div {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      input:nth-last-child(2) {
+        box-sizing: border-box;
+        height: 30px;
+        padding: 0 20px;
+        letter-spacing: 3px;
+        border: none;
+        background-color: $primary-button;
+        color: $secondary;
+        cursor: pointer;
+      }
+      &:hover {
+        hr {
+          width: 80%;
+          filter: opacity(1);
+        }
+      }
+
+      hr {
+        position: absolute;
+        background-color: $secondary;
+        width: 0%;
+        filter: opacity(0);
+        transition: all 0.5s ease;
+      }
+    }
+  }
 }
