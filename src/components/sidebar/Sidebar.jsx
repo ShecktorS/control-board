@@ -1,11 +1,15 @@
 import styles from "./index.module.scss";
 
 const Sidebar = () => {
-  const reload = () => window.location.reload();
+  const reload = () => {
+    window.location.reload();
+    alert("Logout eseguito con successo!");
+  };
 
   const resetBranches = () => {
     localStorage.clear();
     reload();
+    alert("I dati originali sono stati caricati correttamente");
   };
 
   return (

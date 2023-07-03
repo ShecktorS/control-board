@@ -1,5 +1,6 @@
-import { Fragment, useEffect, useState } from "react";
 import styles from "./index.module.scss";
+import { useEffect, useState } from "react";
+import { initialBranch } from "../../mocks/initialBranch";
 
 import Branch from "../branch";
 import ModalForm from "../modalForm";
@@ -37,26 +38,6 @@ const Board = ({ personContext }) => {
       });
     const storedBranches = JSON.parse(localStorage.getItem("branches"));
     if (!storedBranches) {
-      const initialBranch = [
-        {
-          name: "Maxi-Store",
-          category: "all",
-          location: "Milano",
-          products: [],
-        },
-        {
-          name: "Store de Roma",
-          category: "electronics",
-          location: "Roma",
-          products: [],
-        },
-        {
-          name: "U' Store",
-          category: "jewelery",
-          location: "Palermo",
-          products: [],
-        },
-      ];
       setBranches(initialBranch);
       localStorage.setItem("branches", JSON.stringify(initialBranch));
     } else {

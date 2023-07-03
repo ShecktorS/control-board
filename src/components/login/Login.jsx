@@ -1,5 +1,4 @@
 import styles from "./index.module.scss";
-import { useState } from "react";
 
 const Login = ({ setPersonContext, personContext }) => {
   const admin = { name: "admin", password: "admin" };

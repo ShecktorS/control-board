@@ -6,11 +6,13 @@ import Sidebar from "../../components/sidebar";
 import Loader from "../../components/loader";
 
 const BoardPage = ({ personContext }) => {
+  const [showMsg, setShowMsg] = useState(true);
   const [loader, setLoader] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
       setLoader(false);
+      setShowMsg(false);
     }, 2000);
   }, []);
 
@@ -33,6 +35,9 @@ const BoardPage = ({ personContext }) => {
           </>
         )}
       </section>
+      <div className={`${styles.poupup} ${showMsg && styles.showPoupup}`}>
+        <p>Login eseguito correttamente!</p>
+      </div>
     </div>
   );
 };

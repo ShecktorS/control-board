@@ -1,4 +1,6 @@
 .BoardPage {
+  position: relative;
+
   .header {
     height: 60px;
     text-align: end;
@@ -14,5 +16,31 @@
     display: flex;
     gap: 25px;
     height: 80vh;
+  }
+
+  .poupup {
+    background-color: $primary-alpha;
+    backdrop-filter: blur(10px);
+    color: $primary;
+
+    width: 300px;
+    height: 150px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    position: absolute;
+    bottom: 0;
+    left: calc(50% - 150px);
+
+    filter: opacity(0);
+    transition: filter 1s ease-in-out;
+  }
+
+  .showPoupup {
+    filter: opacity(1);
+    z-index: -5;
   }
 }
