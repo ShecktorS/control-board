@@ -1,7 +1,7 @@
 import styles from "./index.module.scss";
 import { useState } from "react";
 
-const ModalForm = ({ setBranches, setFormIsVisible }) => {
+const ModalForm = ({ setBranches, setFormIsVisible, branches }) => {
   const category = [
     "all",
     "electronics",
@@ -19,7 +19,9 @@ const ModalForm = ({ setBranches, setFormIsVisible }) => {
 
   const onHandelSubmit = (e) => {
     e.preventDefault();
-    setBranches((prev) => [...prev, branchContext]);
+    const newBranches = [...branches, branchContext];
+    setBranches(newBranches);
+    localStorage.setItem("branches", JSON.stringify(newBranches));
     setBranchContext({
       name: "",
       category: "",
@@ -27,7 +29,6 @@ const ModalForm = ({ setBranches, setFormIsVisible }) => {
       products: [],
     });
     setFormIsVisible((prev) => !prev);
-    console.log(branchContext);
   };
 
   return (

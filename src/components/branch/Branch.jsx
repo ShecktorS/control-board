@@ -1,6 +1,12 @@
 import styles from "./index.module.scss";
 
-const Branch = ({ data, setProductsContext, setBranches, personContext }) => {
+const Branch = ({
+  data,
+  setProductsContext,
+  setBranches,
+  branches,
+  personContext,
+}) => {
   const onHandleClick = () => {
     console.log("clicked " + data.name);
     setProductsContext({
@@ -21,9 +27,11 @@ const Branch = ({ data, setProductsContext, setBranches, personContext }) => {
           onClick={(e) => {
             e.stopPropagation();
             alert(`Lo store "${data.name}" verrà eliminato`);
-            setBranches((prev) =>
-              prev.filter((brench) => brench.name != data.name)
+            const newBranch = branches.filter(
+              (brench) => brench.name != data.name
             );
+            setBranches(newBranch);
+            localStorage.setItem("branches", JSON.stringify(newBranch));
           }}
         >
           Elimina

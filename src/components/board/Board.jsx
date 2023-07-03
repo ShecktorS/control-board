@@ -21,26 +21,7 @@ const Board = ({ personContext }) => {
   };
 
   const [products, setProducts] = useState([]);
-  const [branches, setBranches] = useState([
-    {
-      name: "Maxi-Store",
-      category: "all",
-      location: "Milano",
-      products: [],
-    },
-    {
-      name: "Store de Roma",
-      category: "electronics",
-      location: "Roma",
-      products: [],
-    },
-    {
-      name: "U' Store",
-      category: "jewelery",
-      location: "Palermo",
-      products: [],
-    },
-  ]);
+  const [branches, setBranches] = useState([]);
   const [productsContext, setProductsContext] = useState({
     payload: [],
     isVisible: false,
@@ -54,6 +35,33 @@ const Board = ({ personContext }) => {
       .then((data) => {
         setProducts(data);
       });
+    const storedBranches = JSON.parse(localStorage.getItem("branches"));
+    if (!storedBranches) {
+      const initialBranch = [
+        {
+          name: "Maxi-Store",
+          category: "all",
+          location: "Milano",
+          products: [],
+        },
+        {
+          name: "Store de Roma",
+          category: "electronics",
+          location: "Roma",
+          products: [],
+        },
+        {
+          name: "U' Store",
+          category: "jewelery",
+          location: "Palermo",
+          products: [],
+        },
+      ];
+      setBranches(initialBranch);
+      localStorage.setItem("branches", JSON.stringify(initialBranch));
+    } else {
+      setBranches(storedBranches);
+    }
   }, []);
 
   useEffect(() => {
@@ -78,6 +86,7 @@ const Board = ({ personContext }) => {
           <>
             {branches.map((item, i) => (
               <Branch
+                branches={branches}
                 setBranches={setBranches}
                 personContext={personContext}
                 setProductsContext={setProductsContext}
@@ -128,9 +137,10 @@ const Board = ({ personContext }) => {
             </>
           )}
           <button
-            onClick={() =>
-              setProductsContext({ ...productsContext, isVisible: false })
-            }
+            onClick={() => {
+              setProductsContext({ ...productsContext, isVisible: false });
+              localStorage.setItem("branches", JSON.stringify(branches));
+            }}
             className={styles.closeProductsList}
           >
             X
@@ -147,6 +157,7 @@ const Board = ({ personContext }) => {
         <ModalForm
           setFormIsVisible={setFormIsVisible}
           setBranches={setBranches}
+          branches={branches}
         />
       )}
     </div>
