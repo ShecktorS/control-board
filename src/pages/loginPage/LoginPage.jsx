@@ -1,7 +1,15 @@
 import styles from "./index.module.scss";
 import Login from "../../components/login";
+import { useState } from "react";
 
-const LoginPage = ({ setPersonContext, personContext }) => {
+const LoginPage = () => {
+  const [personContext, setPersonContext] = useState({
+    name: "",
+    password: "",
+    isLogged: false,
+    type: null,
+  });
+
   return (
     <div className={styles.LoginPage}>
       <Login

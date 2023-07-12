@@ -2,10 +2,16 @@ import styles from "./index.module.scss";
 import { useState, useEffect } from "react";
 
 import Board from "../../components/board";
-import Sidebar from "../../components/sidebar";
 import Loader from "../../components/loader";
 
-const BoardPage = ({ personContext }) => {
+const BoardPage = () => {
+  const [personContext] = useState({
+    name: "admin",
+    password: "admin",
+    isLogged: true,
+    type: "admin",
+  });
+
   const [showMsg, setShowMsg] = useState(true);
   const [loader, setLoader] = useState(true);
 
@@ -18,19 +24,11 @@ const BoardPage = ({ personContext }) => {
 
   return (
     <div className={styles.BoardPage}>
-      <h1 className={styles.header}>
-        Benvenuto{" "}
-        <span style={{ textDecoration: "underline" }}>
-          {personContext.name}
-        </span>
-      </h1>
       <section className={styles.centralSection}>
-        <Sidebar />
         {loader ? (
           <Loader />
         ) : (
           <>
-            <hr />
             <Board personContext={personContext} />
           </>
         )}

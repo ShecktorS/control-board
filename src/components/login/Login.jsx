@@ -1,6 +1,10 @@
 import styles from "./index.module.scss";
 
+import { useNavigate } from "react-router-dom";
+
 const Login = ({ setPersonContext, personContext }) => {
+  const navigate = useNavigate();
+
   const admin = { name: "admin", password: "admin" };
   const user = { name: "user", password: "user" };
   const accessRequest = (e) => {
@@ -11,6 +15,7 @@ const Login = ({ setPersonContext, personContext }) => {
     ) {
       setPersonContext({ ...personContext, isLogged: true, type: "admin" });
       console.table(personContext);
+      navigate("/dashboard");
     } else if (
       personContext.name == user.name &&
       personContext.password == user.password

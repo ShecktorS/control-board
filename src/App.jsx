@@ -1,31 +1,19 @@
 import { useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
 import styles from "./App.module.scss";
 
 // ------import pages and components-------
-import LoginPage from "./pages/loginPage";
-import BoardPage from "./pages/boardPage";
+import Sidebar from "./components/sidebar/Sidebar";
 
 function App() {
-  const [personContext, setPersonContext] = useState({
-    name: "",
-    password: "",
-    isLogged: false,
-    type: null,
-  });
   return (
     <div className={styles.App}>
-      {!personContext.isLogged ? (
-        <>
-          <LoginPage
-            setPersonContext={setPersonContext}
-            personContext={personContext}
-          />
-        </>
-      ) : (
-        <>
-          <BoardPage personContext={personContext} />
-        </>
-      )}
+      <Sidebar />
+      <div className={styles.content}>
+        <h1>Header</h1>
+        <Outlet />
+        <h1>Footer</h1>
+      </div>
     </div>
   );
 }

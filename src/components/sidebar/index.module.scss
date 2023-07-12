@@ -1,25 +1,61 @@
 .Sidebar {
-  height: 400px;
-  width: 300px;
+  box-sizing: border-box;
+  height: 100vh;
+  width: 70px;
+  border-radius: 20px;
+  // padding: 30px;
+  // // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  position: fixed;
+  z-index: 6;
+  overflow: hidden;
+  transition: all 0.4s ease;
+
+  &:hover {
+    width: 300px;
+    ul {
+      li {
+        transform: scale(1);
+      }
+    }
+  }
+
+  background-color: $primary-button;
 
   ul {
+    height: 100%;
+    width: 100%;
+    margin-left: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    transition: all 0.4s ease;
+
     li {
-      margin-bottom: 50px;
+      width: 200px;
+      color: $secondary;
       list-style-type: none;
       cursor: pointer;
-      border-bottom: solid 1px $primary;
-      border-right: solid 1px $primary;
-      border-radius: 10px;
-      border-bottom-left-radius: 0;
       letter-spacing: 2px;
       transition: all 0.35s ease;
+      transform: scale(1.2);
+
+      span {
+        margin-right: 30px;
+        font-size: 19px;
+      }
 
       &:hover {
-        color: $accent;
         transform: scale(1.1);
         border-bottom: hidden;
         border-right: hidden;
+        color: white;
       }
     }
+  }
+
+  @media screen and (max-width: 600px) {
+    display: none;
   }
 }
