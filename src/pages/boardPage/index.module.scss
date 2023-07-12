@@ -1,17 +1,6 @@
 .BoardPage {
   position: relative;
 
-  .header {
-    height: 60px;
-    text-align: end;
-    padding-right: 30px;
-    border-bottom: 1px solid $primary;
-
-    span {
-      text-transform: capitalize;
-    }
-  }
-
   .centralSection {
     display: flex;
     gap: 25px;

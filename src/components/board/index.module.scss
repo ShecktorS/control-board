@@ -108,13 +108,14 @@
 
   .addStoreBtn {
     position: fixed;
+    box-sizing: border-box;
     bottom: 0;
     right: 0;
     text-align: center;
     margin: 20px;
     padding: 20px;
     border-radius: 20px;
-    background-color: $secondary;
+    background-color: $background;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.35);
     transition: all 0.4s ease;
 
@@ -135,6 +136,28 @@
       background-color: $primary-alpha;
       cursor: pointer;
       transition: all 0.3s ease;
+
+      font-size: 1em;
+      color: $accent;
+
+      position: relative;
+
+      & > * {
+        transition: all 0.4s ease;
+      }
+
+      .closeModalAddStore {
+        transform: scale(0.5) rotate(45deg);
+        filter: opacity(0);
+        position: absolute;
+        bottom: -2.2px;
+        right: -7.3px;
+      }
+
+      .showAnimation {
+        filter: opacity(1);
+        transform: scale(1.3) rotate(180deg) translate(9.5px, 5.5px);
+      }
     }
   }
 }

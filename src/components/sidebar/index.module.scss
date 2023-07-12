@@ -26,7 +26,6 @@
   ul {
     height: 100%;
     width: 100%;
-    margin-left: 5px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -43,14 +42,21 @@
 
       span {
         margin-right: 30px;
-        font-size: 19px;
+        font-size: 23px;
+
+        & > * {
+          transform: translateY(5px);
+          transition: transform 0.4s ease-out;
+        }
       }
 
       &:hover {
         transform: scale(1.1);
-        border-bottom: hidden;
-        border-right: hidden;
         color: white;
+
+        span > * {
+          transform: translateX(20px) translateY(5px);
+        }
       }
     }
   }

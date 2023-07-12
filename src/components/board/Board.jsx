@@ -1,6 +1,8 @@
 import styles from "./index.module.scss";
 import { useEffect, useState } from "react";
 import { initialBranch } from "../../mocks/initialBranch";
+import { BsBuildingAdd } from "react-icons/bs";
+import { IoMdCloseCircle } from "react-icons/io";
 
 import Branch from "../branch";
 import ModalForm from "../modalForm";
@@ -130,7 +132,14 @@ const Board = ({ personContext }) => {
       )}
       {personContext.type === "admin" && (
         <div className={styles.addStoreBtn}>
-          <button onClick={() => setFormIsVisible((prev) => !prev)}>➕</button>
+          <button onClick={() => setFormIsVisible((prev) => !prev)}>
+            <BsBuildingAdd style={{ opacity: formIsVisible && 0 }} />
+            <IoMdCloseCircle
+              className={`${styles.closeModalAddStore} ${
+                formIsVisible && styles.showAnimation
+              }`}
+            />
+          </button>
         </div>
       )}
 

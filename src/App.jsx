@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import styles from "./App.module.scss";
 
 // ------import pages and components-------
+import Header from "./components/header";
 import Sidebar from "./components/sidebar/Sidebar";
 
 function App() {
@@ -10,9 +11,8 @@ function App() {
     <div className={styles.App}>
       <Sidebar />
       <div className={styles.content}>
-        <h1>Header</h1>
+        <Header />
         <Outlet />
-        <h1>Footer</h1>
       </div>
     </div>
   );

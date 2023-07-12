@@ -1,0 +1,53 @@
+.Header {
+  box-sizing: border-box;
+  background-color: $background;
+  height: 80px;
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .info_profile {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    .pic_profile {
+      height: 60%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    &::after {
+      box-sizing: border-box;
+      content: "";
+      position: absolute;
+      top: 15px;
+      left: 35px;
+      height: 15px;
+      width: 15px;
+      background-color: rgb(125, 248, 125);
+      border-radius: 50%;
+      border: 2px white solid;
+    }
+
+    &_content {
+      padding-left: 5px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      * {
+        margin: 0;
+        padding-left: 5px;
+      }
+
+      p {
+        color: #dddcdc;
+      }
+    }
+  }
+}
