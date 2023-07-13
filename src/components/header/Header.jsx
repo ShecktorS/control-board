@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "./index.module.scss";
 
 const Header = () => {
-  const [onlineToggle, setOnlineToggle] = useState(2);
+  const [onlineToggle, setOnlineToggle] = useState(0);
 
   return (
     <div className={styles.Header}>

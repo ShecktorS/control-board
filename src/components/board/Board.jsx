@@ -1,5 +1,6 @@
 import styles from "./index.module.scss";
 import { useEffect, useState } from "react";
+
 import { initialBranch } from "../../mocks/initialBranch";
 import { BsBuildingAdd } from "react-icons/bs";
 import { IoMdCloseCircle } from "react-icons/io";
@@ -62,7 +63,7 @@ const Board = ({ personContext }) => {
 
   return (
     <div className={styles.Board}>
-      <h1 className={styles.branches}>Filiali</h1>
+      <h1 className={styles.branches}>Dashboard</h1>
       <section>
         {branches.length < 1 && <h2>Non è presente alcuno store!</h2>}
         {!formIsVisible && (

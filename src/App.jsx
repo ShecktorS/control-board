@@ -9,11 +9,11 @@ import Sidebar from "./components/sidebar/Sidebar";
 function App() {
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   // Inserire in questo la condizione per l'auth
-  //   let pippo;
-  //   !pippo && navigate("/login");
-  // }, []);
+  useEffect(() => {
+    // Inserire in questo la condizione per l'auth
+    let pippo = 1;
+    pippo < 1 ? navigate("/login") : navigate("/dashboard");
+  }, []);
 
   return (
     <div className={styles.App}>

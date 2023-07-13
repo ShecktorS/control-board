@@ -19,10 +19,7 @@ const Error = () => {
       <h1>Ops...</h1>
       <p>La pagina che hai richiesto non è stata trovata</p>
       <h3 style={{ cursor: "pointer" }}>
-        <Link
-          style={{ textDecoration: "none", color: "#353535" }}
-          to="/filiali"
-        >
+        <Link style={{ textDecoration: "none", color: "#353535" }} to="/">
           Torna indietro
         </Link>
       </h3>
