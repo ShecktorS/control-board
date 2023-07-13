@@ -1,15 +1,19 @@
 .Board {
+  height: 100%;
   width: 100%;
   box-sizing: border-box;
   position: relative;
   padding: 50px;
+  background-color: $secondary;
 
   .branches {
+    height: 100%;
     font-size: 2.5em;
     text-align: center;
   }
 
   section {
+    height: 100%;
     box-sizing: border-box;
     padding: 20px;
     display: flex;
@@ -119,6 +123,7 @@
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.35);
     transition: all 0.4s ease;
     font-size: 2.5em;
+    z-index: 5;
 
     &:hover {
       transform: scale(1.1);

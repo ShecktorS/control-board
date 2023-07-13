@@ -21,17 +21,29 @@
       cursor: pointer;
     }
 
-    &::after {
+    // &::after {
+    //   box-sizing: border-box;
+    //   content: "";
+    //   position: absolute;
+    //   top: 15px;
+    //   left: 35px;
+    //   height: 15px;
+    //   width: 15px;
+    //   background-color: rgb(125, 248, 125);
+    //   border-radius: 50%;
+    //   border: 2px white solid;
+    // }
+
+    .point {
       box-sizing: border-box;
-      content: "";
       position: absolute;
       top: 15px;
       left: 35px;
       height: 15px;
       width: 15px;
-      background-color: rgb(125, 248, 125);
       border-radius: 50%;
       border: 2px white solid;
+      transition: all 0.2s ease;
     }
 
     &_content {

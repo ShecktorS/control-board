@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 import styles from "./App.module.scss";
 
 // ------import pages and components-------
@@ -7,6 +7,14 @@ import Header from "./components/header";
 import Sidebar from "./components/sidebar/Sidebar";
 
 function App() {
+  const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   // Inserire in questo la condizione per l'auth
+  //   let pippo;
+  //   !pippo && navigate("/login");
+  // }, []);
+
   return (
     <div className={styles.App}>
       <Sidebar />

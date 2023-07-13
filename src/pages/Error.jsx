@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Error = () => {
   const error = useRouteError();
-  console.error(error);
+  !!error ? console.error(error) : console.error("Pagina non trovata");
 
   return (
     <div

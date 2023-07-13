@@ -15,7 +15,7 @@ const Login = ({ setPersonContext, personContext }) => {
     ) {
       setPersonContext({ ...personContext, isLogged: true, type: "admin" });
       console.table(personContext);
-      navigate("/dashboard");
+      navigate("/filiali");
     } else if (
       personContext.name == user.name &&
       personContext.password == user.password

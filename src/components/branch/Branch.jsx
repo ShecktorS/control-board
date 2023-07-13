@@ -31,14 +31,25 @@ const Branch = ({
       </h1>
       <hr />
       <h3>{data.location}</h3>
-      <p>{data.category}</p>
+      <p>
+        {data.category === "all"
+          ? "Multi"
+          : data.category === "electronics"
+          ? "elettronica"
+          : data.category === "jewelery"
+          ? "Gioielleria"
+          : (data.category === "men's clothing") |
+            (data.category === "women's clothing")
+          ? "Vestiti"
+          : ""}
+      </p>
       {personContext.type === "admin" && (
         <button
           onClick={(e) => {
             e.stopPropagation();
             alert(`Lo store "${data.name}" verrà eliminato`);
             const newBranch = branches.filter(
-              (brench) => brench.name != data.name
+              (branch) => branch.name != data.name
             );
             setBranches(newBranch);
             localStorage.setItem("branches", JSON.stringify(newBranch));

@@ -37,10 +37,6 @@
 
   &:hover {
     transform: scale(0.9);
-
-    button {
-      color: $accent;
-    }
   }
 
   button {
@@ -48,8 +44,14 @@
     bottom: 20px;
     left: 0;
     height: 30px;
-    width: 80px;
+    width: 70px;
     border: none;
     cursor: pointer;
+    transition: color, width 0.4s ease;
+
+    &:hover {
+      color: $accent;
+      width: 90px;
+    }
   }
 }
