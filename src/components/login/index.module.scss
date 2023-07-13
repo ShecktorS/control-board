@@ -1,9 +1,12 @@
 .Login {
+  box-sizing: border-box;
   height: 500px;
   width: 400px;
-  background-color: $secondary-button;
+  background-color: rgba(199, 197, 197, 0.162);
+  backdrop-filter: blur(7px);
+  padding: 20px;
 
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
 
   display: flex;
@@ -14,6 +17,9 @@
 
   h3 {
     font-size: 1.5em;
+    font-weight: bold;
+    color: $secondary;
+    margin: 0;
   }
 
   input {
@@ -21,35 +27,46 @@
     height: 40px;
     width: 90%;
     font-size: 1em;
-    border-radius: 10px;
     font-weight: bold;
-    color: $primary;
+    color: $secondary;
+    border: none;
+    background-color: transparent;
+    border-bottom: 2px solid $secondary;
   }
   span {
     width: 90%;
     text-align: end;
     color: $accent;
-    font-weight: bold;
     cursor: pointer;
   }
 
   .username,
   .password {
-    padding-left: 10px;
+    padding-left: 20px;
     outline-color: $primary-button;
+
+    &::placeholder {
+      color: $primary-button;
+    }
   }
 
-  input:nth-last-child(1) {
+  .submitButton {
     margin-top: 30px;
     width: 70%;
-    border-radius: 20px;
+    border-radius: 10px;
     border: none;
     background-color: $primary-button;
-    color: white;
     cursor: pointer;
 
     &:hover {
-      background-color: $primary-button-light;
+      background-color: #706efd;
     }
+  }
+
+  .nota {
+    margin: 0;
+    color: $secondary;
+    font-size: 0.8em;
+    text-align: center;
   }
 }

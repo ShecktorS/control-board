@@ -40,6 +40,10 @@
       flex-direction: column;
       justify-content: center;
 
+      @media (max-width: 600px) {
+        display: none;
+      }
+
       * {
         margin: 0;
         padding-left: 5px;

@@ -10,5 +10,9 @@
 
   .content {
     padding-left: 70px;
+
+    @media (max-width: 600px) {
+      padding: 0;
+    }
   }
 }

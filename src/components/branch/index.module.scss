@@ -1,14 +1,14 @@
 .Branch {
   border: none;
-  height: 200px;
+  height: 100px;
   width: 300px;
+  min-width: 250px;
   position: relative;
   cursor: pointer;
   transition: 0.4s;
-  background-color: $primary-alpha;
+  background-color: $background;
   color: $primary;
-  border-radius: 20px;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.35);
+  border-radius: 10px;
   z-index: 5;
 
   h1,

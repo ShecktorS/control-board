@@ -3,7 +3,7 @@ import styles from "./index.module.scss";
 const Header = () => {
   return (
     <div className={styles.Header}>
-      <div></div>
+      <div className={styles.left_space}></div>
       <h1>Control Board</h1>
       <div className={styles.info_profile}>
         <img

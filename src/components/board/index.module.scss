@@ -1,13 +1,12 @@
 .Board {
   width: 100%;
+  box-sizing: border-box;
   position: relative;
+  padding: 50px;
 
   .branches {
     font-size: 2.5em;
-  }
-
-  &:nth-of-type(1) {
-    font-size: 2.5em;
+    text-align: center;
   }
 
   section {
@@ -15,6 +14,7 @@
     padding: 20px;
     display: flex;
     flex-direction: row;
+    justify-content: center;
     gap: 20px;
     flex-wrap: wrap;
   }
@@ -118,6 +118,7 @@
     background-color: $background;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.35);
     transition: all 0.4s ease;
+    font-size: 2.5em;
 
     &:hover {
       transform: scale(1.1);

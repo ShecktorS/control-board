@@ -1,3 +1,4 @@
+import { BiBuilding, BiBuildings } from "react-icons/bi";
 import styles from "./index.module.scss";
 
 const Branch = ({
@@ -18,7 +19,16 @@ const Branch = ({
 
   return (
     <div onClick={onHandleClick} className={styles.Branch}>
-      <h1>{data.name}</h1>
+      <h1>
+        {(data.location.toLowerCase() === "milano") |
+        (data.location.toLowerCase() === "roma") |
+        (data.location.toLowerCase() === "palermo") ? (
+          <BiBuildings />
+        ) : (
+          <BiBuilding />
+        )}
+        {" " + data.name}
+      </h1>
       <hr />
       <h3>{data.location}</h3>
       <p>{data.category}</p>

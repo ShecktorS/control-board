@@ -54,6 +54,9 @@ const Login = ({ setPersonContext, personContext }) => {
       <span>password dimenticata?</span>
 
       <input type="submit" className={styles.submitButton} value="Entra" />
+      <p className={styles.nota}>
+        Se riscontri problemi di accesso contatta l'amministratore
+      </p>
     </form>
   );
 };
