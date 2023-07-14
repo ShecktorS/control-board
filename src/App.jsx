@@ -1,28 +1,43 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
+import { Context } from "./store";
 import styles from "./App.module.scss";
+import { useReducer } from "react";
+import { mainReducer } from "./store/reducers";
 
 // ------import pages and components-------
 import Header from "./components/header";
 import Sidebar from "./components/sidebar/Sidebar";
+import { initialState } from "./store/state";
 
 function App() {
   const navigate = useNavigate();
 
+  const [state, dispatch] = useReducer(mainReducer, initialState);
+  const [removePadding, setRemovePadding] = useState(0);
+  const { isLogged } = state.PersonContext;
+
   useEffect(() => {
-    // Inserire in questo la condizione per l'auth
-    let pippo = 1;
-    pippo < 1 ? navigate("/login") : navigate("/dashboard");
-  }, []);
+    if (isLogged) {
+      navigate("/dashboard");
+      setRemovePadding("");
+    } else {
+      navigate("/login");
+    }
+  }, [isLogged, navigate]);
 
   return (
-    <div className={styles.App}>
-      <Sidebar />
-      <div className={styles.content}>
-        <Header />
-        <Outlet />
+    <Context.Provider value={{ state, dispatch }}>
+      <div className={styles.App}>
+        {isLogged && <Sidebar />}
+        <div style={{ paddingLeft: removePadding }} className={styles.content}>
+          {isLogged && <Header />}
+
+          <Outlet />
+        </div>
       </div>
-    </div>
+      {console.log(state)}
+    </Context.Provider>
   );
 }
 

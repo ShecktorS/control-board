@@ -1,6 +1,4 @@
 .BoardPage {
-  position: relative;
-
   .centralSection {
     display: flex;
     gap: 25px;
@@ -22,15 +20,16 @@
     font-size: 1.2em;
     font-weight: bold;
     position: absolute;
-    bottom: 0;
+    bottom: 50px;
     left: calc(50% - 150px);
 
     filter: opacity(0);
     transition: filter 1s ease-in-out;
+    z-index: -5;
   }
 
   .showPoupup {
     filter: opacity(1);
-    z-index: -5;
+    z-index: 10;
   }
 }

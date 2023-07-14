@@ -1,7 +1,10 @@
 .LoginPage {
+  position: fixed;
   height: 100vh;
+  width: 100vw;
   display: grid;
   place-items: center;
+
   // margin: 10vh 0;
   // background: url("https://images.pexels.com/photos/11731989/pexels-photo-11731989.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
 
@@ -12,7 +15,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("https://images.pexels.com/photos/11731989/pexels-photo-11731989.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
-    filter: opacity(0.7);
+    background: linear-gradient(#fe5d8d39, $background 70%),
+      url("https://images.pexels.com/photos/11731989/pexels-photo-11731989.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    filter: opacity(0.6);
   }
 }

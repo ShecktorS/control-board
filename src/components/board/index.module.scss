@@ -113,17 +113,23 @@
   .addStoreBtn {
     position: fixed;
     box-sizing: border-box;
-    bottom: 0;
-    right: 0;
+
+    height: 80px;
+    width: 80px;
+
+    bottom: 50px;
+    right: 50px;
+
     text-align: center;
-    margin: 20px;
-    padding: 20px;
+    padding: 10px;
     border-radius: 20px;
-    background-color: $background;
+    background-color: $primary-button;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.35);
     transition: all 0.4s ease;
     font-size: 2.5em;
     z-index: 5;
+    display: grid;
+    place-content: center;
 
     &:hover {
       transform: scale(1.1);
@@ -139,7 +145,7 @@
       width: 50px;
       border-radius: 20px;
       border: none;
-      background-color: $primary-alpha;
+      background-color: $secondary;
       cursor: pointer;
       transition: all 0.3s ease;
 
@@ -150,6 +156,7 @@
 
       & > * {
         transition: all 0.4s ease;
+        transform: scale(1) translate(-2px, 5px);
       }
 
       .closeModalAddStore {

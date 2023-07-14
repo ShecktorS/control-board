@@ -1,8 +1,8 @@
 .Login {
   box-sizing: border-box;
   height: 500px;
-  width: 400px;
-  background-color: rgba(199, 197, 197, 0.162);
+  width: clamp(350px, 70vw, 400px);
+  background-color: $secondary;
   backdrop-filter: blur(7px);
   padding: 20px;
 
@@ -18,7 +18,7 @@
   h3 {
     font-size: 1.5em;
     font-weight: bold;
-    color: $secondary;
+    color: $primary;
     margin: 0;
   }
 
@@ -28,10 +28,10 @@
     width: 90%;
     font-size: 1em;
     font-weight: bold;
-    color: $secondary;
+    color: $primary;
     border: none;
     background-color: transparent;
-    border-bottom: 2px solid $secondary;
+    border-bottom: 2px solid $primary-button;
   }
   span {
     width: 90%;
@@ -42,11 +42,11 @@
 
   .username,
   .password {
-    padding-left: 20px;
+    padding: 0 20px;
     outline-color: $primary-button;
 
     &::placeholder {
-      color: $secondary;
+      color: $primary-button;
     }
   }
 
@@ -56,6 +56,7 @@
     border-radius: 10px;
     border: none;
     background-color: $primary-button;
+    color: $secondary;
     cursor: pointer;
 
     &:hover {
@@ -64,8 +65,9 @@
   }
 
   .nota {
+    width: 80%;
     margin: 0;
-    color: $secondary;
+    color: $primary-button;
     font-size: 0.8em;
     text-align: center;
   }

@@ -1,5 +1,5 @@
 import styles from "./index.module.scss";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { initialBranch } from "../../mocks/initialBranch";
 import { BsBuildingAdd } from "react-icons/bs";
@@ -7,6 +7,7 @@ import { IoMdCloseCircle } from "react-icons/io";
 
 import Branch from "../branch";
 import ModalForm from "../modalForm";
+import { Context } from "../../store";
 
 const Board = ({ personContext }) => {
   //Funzione per l'eliminazione dei prodotti all'interno del branch
@@ -61,13 +62,23 @@ const Board = ({ personContext }) => {
       );
   }, [products, formIsVisible]);
 
+  const { state } = useContext(Context);
+
   return (
     <div className={styles.Board}>
-      <h1 className={styles.branches}>Dashboard</h1>
-      <section>
-        {branches.length < 1 && <h2>Non è presente alcuno store!</h2>}
-        {!formIsVisible && (
-          <>
+      {!formIsVisible && (
+        <>
+          <h1
+            onClick={() => {
+              console.log(state.PersonContext.isLogged);
+            }}
+            className={styles.branches}
+          >
+            Dashboard
+          </h1>
+          <section>
+            {branches.length < 1 && <h2>Non è presente alcuno store!</h2>}
+
             {branches.map((item, i) => (
               <Branch
                 branches={branches}
@@ -78,9 +89,9 @@ const Board = ({ personContext }) => {
                 key={i}
               />
             ))}
-          </>
-        )}
-      </section>
+          </section>
+        </>
+      )}
 
       {productsContext.isVisible && (
         <div className={styles.productsList}>

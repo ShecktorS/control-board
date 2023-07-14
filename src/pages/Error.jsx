@@ -10,14 +10,18 @@ const Error = () => {
       className="Error"
       style={{
         height: "100vh",
+        width: "100vw",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        textAlign: "center",
       }}
     >
       <h1>Ops...</h1>
-      <p>La pagina che hai richiesto non è stata trovata</p>
+      <p style={{ width: "80%" }}>
+        La pagina che hai richiesto non è stata trovata
+      </p>
       <h3 style={{ cursor: "pointer" }}>
         <Link style={{ textDecoration: "none", color: "#353535" }} to="/">
           Torna indietro

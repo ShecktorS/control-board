@@ -19,8 +19,8 @@ const router = createBrowserRouter(
       <Route path="/" element={<App />}>
         <Route path="pippo" element={<h1>PIPPO</h1>} />
         <Route path="dashboard" element={<BoardPage />} />
+        <Route path="login" element={<LoginPage />} />
       </Route>
-      <Route path="login" element={<LoginPage />} />
       <Route path="*" element={<Error />} /> {/* For ERROR */}
     </Route>
   )
