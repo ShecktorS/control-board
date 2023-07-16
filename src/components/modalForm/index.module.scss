@@ -1,6 +1,11 @@
 .ModalForm {
-  height: 90vh;
   width: 100%;
+  position: relative;
+  top: 0;
+  right: 0;
+  padding-top: 70px;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 4;
 
   display: flex;
   flex-direction: column;

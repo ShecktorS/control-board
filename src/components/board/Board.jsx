@@ -1,7 +1,7 @@
 import styles from "./index.module.scss";
 import { useContext, useEffect, useState } from "react";
+import { initialBranch } from "../../mocks/initialBranch.js";
 
-import { initialBranch } from "../../mocks/initialBranch";
 import { BsBuildingAdd } from "react-icons/bs";
 import { IoMdCloseCircle } from "react-icons/io";
 
@@ -9,91 +9,89 @@ import Branch from "../branch";
 import ModalForm from "../modalForm";
 import { Context } from "../../store";
 
-const Board = ({ personContext }) => {
-  //Funzione per l'eliminazione dei prodotti all'interno del branch
-  const deleteProduct = (productId, branchName) => {
-    setBranches((prev) =>
-      prev.map((branch) => {
-        if (branch.name === branchName) {
-          const updatedProducts = branch.products.filter(
-            (product) => product.id !== productId
-          );
-          return { ...branch, products: updatedProducts };
-        }
-        return branch;
-      })
-    );
-  };
+//TODO: Sistemare lo z-index per cliccare i branches
 
-  const [products, setProducts] = useState([]);
-  const [branches, setBranches] = useState([]);
+const Board = () => {
+  const { state, dispatch } = useContext(Context);
   const [productsContext, setProductsContext] = useState({
     payload: [],
     isVisible: false,
     branch: "",
   });
   const [formIsVisible, setFormIsVisible] = useState(false);
-
+  //Funzione per l'eliminazione dei prodotti all'interno del branch
+  // const deleteProduct = (productId, branchName) => {
+  //   setBranches((prev) =>
+  //     prev.map((branch) => {
+  //       if (branch.name === branchName) {
+  //         const updatedProducts = branch.products.filter(
+  //           (product) => product.id !== productId
+  //         );
+  //         return { ...branch, products: updatedProducts };
+  //       }
+  //       return branch;
+  //     })
+  //   );
+  // };
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
-      .then((data) => {
-        setProducts(data);
+      .then((data) => dispatch({ type: "GET_PRODUCTS", payload: data }))
+      .then(() => {
+        console.log("Fetch");
+        const storedBranches = JSON.parse(localStorage.getItem("branches"));
+        if (!storedBranches) {
+          dispatch({ type: "GET_BRANCHES", payload: [...initialBranch] });
+          localStorage.setItem("branches", JSON.stringify(initialBranch));
+        } else {
+          dispatch({ type: "GET_BRANCHES", payload: [...storedBranches] });
+        }
       });
-    const storedBranches = JSON.parse(localStorage.getItem("branches"));
-    if (!storedBranches) {
-      setBranches(initialBranch);
-      localStorage.setItem("branches", JSON.stringify(initialBranch));
-    } else {
-      setBranches(storedBranches);
-    }
   }, []);
 
-  useEffect(() => {
-    branches
-      //----Questa condizione permette di lasciare l'array dei prodotti per com'è quando è già stato riempito
-      .filter((branch) => branch.products.length < 1)
-      .map(
-        (item) =>
-          (item.products =
-            item.category !== "all"
-              ? products.filter((element) => element.category == item.category)
-              : products)
-      );
-  }, [products, formIsVisible]);
-
-  const { state } = useContext(Context);
+  // useEffect(() => {
+  //   branches
+  //     //----Questa condizione permette di lasciare l'array dei prodotti per com'è quando è già stato riempito
+  //     .filter((branch) => branch.products.length < 1)
+  //     .map(
+  //       (item) =>
+  //         (item.products =
+  //           item.category !== "all"
+  //             ? products.filter((element) => element.category == item.category)
+  //             : products)
+  //     );
+  // }, [products, formIsVisible]);
 
   return (
     <div className={styles.Board}>
-      {!formIsVisible && (
-        <>
-          <h1
-            onClick={() => {
-              console.log(state.PersonContext.isLogged);
-            }}
-            className={styles.branches}
-          >
-            Dashboard
-          </h1>
-          <section>
-            {branches.length < 1 && <h2>Non è presente alcuno store!</h2>}
+      <h1
+        onClick={() => {
+          console.log(state);
+        }}
+        className={styles.branches}
+      >
+        Dashboard (Clicca per lo state)
+      </h1>
+      <section>
+        {state.PersonContext.branches.length < 1 && (
+          <h2>Non è presente alcuno store!</h2>
+        )}
 
-            {branches.map((item, i) => (
-              <Branch
-                branches={branches}
-                setBranches={setBranches}
-                personContext={personContext}
-                setProductsContext={setProductsContext}
-                data={item}
-                key={i}
-              />
-            ))}
-          </section>
-        </>
-      )}
+        {/* -----------------------LISTA DEI BRANCHES------------------------------------- */}
+        {state.PersonContext.branches.map((item, i) => (
+          <Branch
+            branches={state.PersonContext.branches}
+            // setBranches={setBranches}
+            personContext={state.PersonContext}
+            // setProductsContext={setProductsContext}
+            data={item}
+            key={i}
+          />
+        ))}
+      </section>
 
-      {productsContext.isVisible && (
+      {/* ------------------------------------------------------------------------ */}
+      {/* {productsContext.isVisible && (
         <div className={styles.productsList}>
           {productsContext.payload.length < 1 ? (
             <>
@@ -109,7 +107,7 @@ const Board = ({ personContext }) => {
                   <p>#{product.id}</p>
                   <h4>{product.title}</h4>
 
-                  {personContext.type === "admin" && (
+                  {state.personContext.type === "admin" && (
                     <p
                       onClick={() => {
                         deleteProduct(product.id, productsContext.branch);
@@ -141,8 +139,11 @@ const Board = ({ personContext }) => {
             X
           </button>
         </div>
-      )}
-      {personContext.type === "admin" && (
+      )} */}
+
+      {/* ------------Condizione che mostra pulsante per aggiunta del branches------------- */}
+      {/* --------------------------------------------------------------------- */}
+      {state.PersonContext.type === "admin" && (
         <div className={styles.addStoreBtn}>
           <button onClick={() => setFormIsVisible((prev) => !prev)}>
             <BsBuildingAdd style={{ opacity: formIsVisible && 0 }} />
@@ -155,13 +156,13 @@ const Board = ({ personContext }) => {
         </div>
       )}
 
-      {formIsVisible && (
-        <ModalForm
-          setFormIsVisible={setFormIsVisible}
-          setBranches={setBranches}
-          branches={branches}
-        />
-      )}
+      <div
+        className={`${styles.modalContainer} ${
+          formIsVisible && styles.showModal
+        }`}
+      >
+        <ModalForm setFormIsVisible={setFormIsVisible} />
+      </div>
     </div>
   );
 };

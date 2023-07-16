@@ -24,7 +24,7 @@ function App() {
     } else {
       navigate("/login");
     }
-  }, [isLogged, navigate]);
+  }, [isLogged]);
 
   return (
     <Context.Provider value={{ state, dispatch }}>
@@ -36,7 +36,6 @@ function App() {
           <Outlet />
         </div>
       </div>
-      {console.log(state)}
     </Context.Provider>
   );
 }

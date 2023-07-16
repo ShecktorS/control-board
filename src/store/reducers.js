@@ -10,6 +10,7 @@ export const mainReducer = (state, action) => {
           ...state.PersonContext,
           isLogged: true,
           type: admin.name,
+          name: admin.name,
         },
       };
 
@@ -20,12 +21,34 @@ export const mainReducer = (state, action) => {
           ...state.PersonContext,
           isLogged: true,
           type: user.name,
+          name: user.name,
         },
       };
     case "LOGOUT":
       return {
         ...state,
         PersonContext: { ...state.PersonContext, isLogged: false, type: "" },
+      };
+    case "GET_PRODUCTS":
+      return {
+        ...state,
+        products: [...action.payload],
+      };
+    case "GET_BRANCHES":
+      return {
+        ...state,
+        PersonContext: {
+          ...state.PersonContext,
+          branches: [...action.payload],
+        },
+      };
+    case "ADD_BRANCH":
+      return {
+        ...state,
+        PersonContext: {
+          ...state.PersonContext,
+          branches: [...state.PersonContext.branches, action.payload],
+        },
       };
 
     default:

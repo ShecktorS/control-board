@@ -5,5 +5,9 @@ export const initialState = {
     isLogged: false,
     type: null,
     test: "prova",
+    branches: [],
   },
+  products: [],
+  visualCondition: {},
+  // optional -> visualCondition
 };

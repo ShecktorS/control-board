@@ -1,13 +1,15 @@
 import styles from "./index.module.scss";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { Context } from "../../store";
 
-const ModalForm = ({ setBranches, setFormIsVisible, branches }) => {
+const ModalForm = ({ setFormIsVisible }) => {
   const category = [
     "all",
     "electronics",
     "jewelery",
     "men's clothing",
     "women's clothing",
+    "vuoto",
   ];
 
   const [branchContext, setBranchContext] = useState({
@@ -17,11 +19,14 @@ const ModalForm = ({ setBranches, setFormIsVisible, branches }) => {
     products: [],
   });
 
+  const { state, dispatch } = useContext(Context);
+
+  const { branches } = state.PersonContext;
+
   const onHandelSubmit = (e) => {
     e.preventDefault();
-    const newBranches = [...branches, branchContext];
-    setBranches(newBranches);
-    localStorage.setItem("branches", JSON.stringify(newBranches));
+    dispatch({ type: "ADD_BRANCH", payload: branchContext });
+    localStorage.setItem("branches", JSON.stringify(branches));
     setBranchContext({
       name: "",
       category: "",
@@ -49,7 +54,9 @@ const ModalForm = ({ setBranches, setFormIsVisible, branches }) => {
           />
         </div>
         <div>
-          <label htmlFor="location">Città</label>
+          <label onClick={() => console.log(branches)} htmlFor="location">
+            Città
+          </label>
           <input
             type="text"
             name="location"
