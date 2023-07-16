@@ -13,11 +13,9 @@ import { Context } from "../../store";
 
 const Board = () => {
   const { state, dispatch } = useContext(Context);
-  const [productsContext, setProductsContext] = useState({
-    payload: [],
-    isVisible: false,
-    branch: "",
-  });
+
+  const { branches, type } = state.PersonContext;
+
   const [formIsVisible, setFormIsVisible] = useState(false);
   //Funzione per l'eliminazione dei prodotti all'interno del branch
   // const deleteProduct = (productId, branchName) => {
@@ -49,19 +47,6 @@ const Board = () => {
       });
   }, []);
 
-  // useEffect(() => {
-  //   branches
-  //     //----Questa condizione permette di lasciare l'array dei prodotti per com'è quando è già stato riempito
-  //     .filter((branch) => branch.products.length < 1)
-  //     .map(
-  //       (item) =>
-  //         (item.products =
-  //           item.category !== "all"
-  //             ? products.filter((element) => element.category == item.category)
-  //             : products)
-  //     );
-  // }, [products, formIsVisible]);
-
   return (
     <div className={styles.Board}>
       <h1
@@ -73,20 +58,11 @@ const Board = () => {
         Dashboard (Clicca per lo state)
       </h1>
       <section>
-        {state.PersonContext.branches.length < 1 && (
-          <h2>Non è presente alcuno store!</h2>
-        )}
+        {branches.length < 1 && <h2>Non è presente alcuno store!</h2>}
 
-        {/* -----------------------LISTA DEI BRANCHES------------------------------------- */}
+        {/* -----------------------LISTA DEI BRANCHES----------------------------- */}
         {state.PersonContext.branches.map((item, i) => (
-          <Branch
-            branches={state.PersonContext.branches}
-            // setBranches={setBranches}
-            personContext={state.PersonContext}
-            // setProductsContext={setProductsContext}
-            data={item}
-            key={i}
-          />
+          <Branch data={item} key={i} />
         ))}
       </section>
 
@@ -141,9 +117,9 @@ const Board = () => {
         </div>
       )} */}
 
-      {/* ------------Condizione che mostra pulsante per aggiunta del branches------------- */}
+      {/* ---------Condizione che mostra pulsante per aggiunta del branches---- */}
       {/* --------------------------------------------------------------------- */}
-      {state.PersonContext.type === "admin" && (
+      {type === "admin" && (
         <div className={styles.addStoreBtn}>
           <button onClick={() => setFormIsVisible((prev) => !prev)}>
             <BsBuildingAdd style={{ opacity: formIsVisible && 0 }} />

@@ -1,20 +1,26 @@
 import { BiBuilding, BiBuildings } from "react-icons/bi";
+import { useContext } from "react";
+import { Context } from "../../store";
 import styles from "./index.module.scss";
+import { useNavigate } from "react-router-dom";
 
-const Branch = ({
-  data,
-  setProductsContext,
-  setBranches,
-  branches,
-  personContext,
-}) => {
+const Branch = ({ data }) => {
+  const { state, dispatch } = useContext(Context);
+  const { type, branches } = state.PersonContext;
+
+  const navigate = useNavigate();
+
   const onHandleClick = () => {
     console.log("clicked " + data.name);
-    setProductsContext({
-      payload: data.products,
-      isVisible: true,
-      branch: data.name,
-    });
+    navigate(`/branches/${data.name}`);
+  };
+
+  const onHandleDeleteBranch = (e) => {
+    e.stopPropagation();
+    alert(`Lo store "${data.name}" verrà eliminato`);
+    const newBranch = branches.filter((branch) => branch.name !== data.name);
+    dispatch({ type: "DELETE_BRANCH", payload: newBranch });
+    localStorage.setItem("branches", JSON.stringify(newBranch));
   };
 
   return (
@@ -32,8 +38,8 @@ const Branch = ({
       <hr />
       <h3>{data.location}</h3>
       <p>
-        {data.category === "all"
-          ? "Multi"
+        {(data.category === "all") | "vuoto"
+          ? "Vario"
           : data.category === "electronics"
           ? "elettronica"
           : data.category === "jewelery"
@@ -43,20 +49,8 @@ const Branch = ({
           ? "Vestiti"
           : ""}
       </p>
-      {personContext.type === "admin" && (
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            alert(`Lo store "${data.name}" verrà eliminato`);
-            const newBranch = branches.filter(
-              (branch) => branch.name != data.name
-            );
-            setBranches(newBranch);
-            localStorage.setItem("branches", JSON.stringify(newBranch));
-          }}
-        >
-          Elimina
-        </button>
+      {type === "admin" && (
+        <button onClick={(e) => onHandleDeleteBranch(e)}>Elimina</button>
       )}
     </div>
   );

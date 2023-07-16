@@ -50,6 +50,22 @@ export const mainReducer = (state, action) => {
           branches: [...state.PersonContext.branches, action.payload],
         },
       };
+    case "DELETE_BRANCH":
+      return {
+        ...state,
+        PersonContext: {
+          ...state.PersonContext,
+          branches: [...action.payload],
+        },
+      };
+    // case "GET_BRANCH_PRODUCTS":
+    //   return {
+    //     ...state,
+    //     PersonContext: {
+    //       ...state.PersonContext,
+    //       branches: [...action.payload],
+    //     },
+    //   };
 
     default:
       return state;

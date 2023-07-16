@@ -24,7 +24,7 @@ function App() {
     } else {
       navigate("/login");
     }
-  }, [isLogged]);
+  }, []);
 
   return (
     <Context.Provider value={{ state, dispatch }}>
