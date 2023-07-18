@@ -1,0 +1,34 @@
+.BranchProductItem {
+  background-color: white;
+  height: 70px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  img {
+    width: 20%;
+    height: 80%;
+    object-fit: contain;
+  }
+
+  .textContainer {
+    display: flex;
+    width: 50%;
+    text-align: center;
+
+    .title {
+      width: 100%;
+    }
+
+    // .description {
+    //   height: 50px;
+    //   width: 100%;
+    //   overflow: hidden;
+    //   text-align: center;
+
+    //   @media (max-width: 1000px) {
+    //     display: none;
+    //   }
+    // }
+  }
+}

@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import styles from "./index.module.scss";
 import {
   BiHomeAlt2,
@@ -11,9 +12,13 @@ import {
 } from "react-icons/bi";
 
 import { Link } from "react-router-dom";
+import { Context } from "../../store";
 
 const Sidebar = () => {
+  const { state, dispatch } = useContext(Context);
+
   const reload = () => {
+    dispatch({ type: "LOGOUT" });
     window.location.reload();
     alert("Logout eseguito con successo!");
   };
@@ -28,10 +33,12 @@ const Sidebar = () => {
     <div className={styles.Sidebar}>
       <ul>
         <li>
-          <span>
-            <BiHomeAlt2 />
-          </span>
-          <Link to="/dashboard">Dashboard</Link>
+          <Link to="/dashboard">
+            <span>
+              <BiHomeAlt2 />
+            </span>
+            Dashboard
+          </Link>
         </li>
         <li>
           <span>
@@ -40,10 +47,12 @@ const Sidebar = () => {
           Filiali
         </li>
         <li>
-          <span>
-            <BiSolidBarcode />
-          </span>
-          <Link to="/prodotti">Prodotti</Link>
+          <Link to="/prodotti">
+            <span>
+              <BiSolidBarcode />
+            </span>
+            Prodotti
+          </Link>
         </li>
         <li>
           <span>
@@ -58,10 +67,12 @@ const Sidebar = () => {
           Profilo
         </li>
         <li>
-          <span>
-            <BiHelpCircle />
-          </span>
-          Aiuto
+          <Link to="/aiuto">
+            <span>
+              <BiHelpCircle />
+            </span>
+            Aiuto
+          </Link>
         </li>
         <li onClick={reload}>
           <span>

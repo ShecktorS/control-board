@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styles from "./index.module.scss";
+import { Context } from "../../store";
 
 const Header = () => {
   const [onlineToggle, setOnlineToggle] = useState(0);
+  const { state } = useContext(Context);
+  const { name } = state.PersonContext;
 
   return (
     <div className={styles.Header}>
@@ -13,14 +16,13 @@ const Header = () => {
           onClick={() =>
             setOnlineToggle(onlineToggle === 0 ? 1 : onlineToggle === 1 ? 2 : 0)
           }
-          // onDoubleClick={setOnlineToggle(onlineToggle !== 2 ? 2 : 0)}
           className={styles.pic_profile}
           src="https://www.360forma.com/wp-content/uploads/2021/06/Building-Manager.jpg"
           alt="pic profile"
         />
         <div className={styles.info_profile_content}>
-          <h3>Adriano</h3>
-          <p>adriano@pippo.com</p>
+          <h3>{name}</h3>
+          <p>{name}@controlBoard.com</p>
         </div>
         <div
           className={styles.point}

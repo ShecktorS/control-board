@@ -13,6 +13,7 @@ import LoginPage from "./pages/loginPage/LoginPage.jsx";
 import BoardPage from "./pages/boardPage/BoardPage.jsx";
 import "./index.scss";
 import BranchPage from "./pages/branchPage/BranchPage.jsx";
+import ProductsPage from "./pages/productsPage/ProductsPage.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,8 +22,29 @@ const router = createBrowserRouter(
         <Route path="pippo" element={<h1>PIPPO</h1>} />
         <Route path="dashboard" element={<BoardPage />} />
         <Route path="login" element={<LoginPage />} />
-        <Route path="prodotti" element={<h1>Pagina dei prodotti</h1>} />
+        <Route path="prodotti" element={<ProductsPage />} />
         <Route path="filiali/:name" element={<BranchPage />} />
+        <Route
+          path="aiuto"
+          element={
+            <div
+              style={{
+                height: "80vh",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {" "}
+              <h2>
+                Per problemi al database contatta il numero{" "}
+                <span style={{ color: "#5a57ff", cursor: "pointer" }}>
+                  3273283228
+                </span>
+              </h2>
+            </div>
+          }
+        />
       </Route>
       <Route path="*" element={<Error />} /> {/* For ERROR */}
     </Route>

@@ -1,7 +1,9 @@
-import { useContext, useEffect } from "react";
+import { Fragment, useContext, useEffect } from "react";
 import styles from "./index.module.scss";
 import { useParams } from "react-router-dom";
 import { Context } from "../../store";
+
+import BranchProductItem from "../../components/branchProductItem/BranchProductItem";
 
 const BranchPage = () => {
   const { name } = useParams();
@@ -12,9 +14,9 @@ const BranchPage = () => {
   const [thisBranch] = branches.filter((branch) => branch.name === name);
 
   useEffect(() => {
-    if (thisBranch.products.length < 1) {
+    if (thisBranch?.products.length < 1) {
       thisBranch.products =
-        (thisBranch.category.toLowerCase() !== "all") & "vuoto"
+        thisBranch.category.toLowerCase() !== "all" && "vuoto"
           ? products.filter(
               (product) => product.category === thisBranch.category
             )
@@ -42,9 +44,21 @@ const BranchPage = () => {
         <div className={styles.bodyBranch}>
           <div className={styles.branchDetail}>
             <p onClick={() => console.log(state)}>Branch details </p>
+            {/* TODO: Sistemare aggiungendo un'animazione che espone i dettagli del branch ed eventualmente autorizza la modifica */}
+          </div>
+          <div className={styles.branchProductItemContainer}>
+            {thisBranch.products.map((product) => (
+              <Fragment key={product.id}>
+                <BranchProductItem product={product} />
+              </Fragment>
+            ))}
+            {thisBranch.products.length < 1 && (
+              <p>Non è presente alcun prodotto!</p>
+            )}
           </div>
         </div>
       </div>
+      <button>Aggiungi un prodotto</button>
     </div>
   );
 };

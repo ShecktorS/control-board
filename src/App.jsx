@@ -17,6 +17,7 @@ function App() {
   const [removePadding, setRemovePadding] = useState(0);
   const { isLogged } = state.PersonContext;
 
+  // FIXME: DA RIATTIVARE!!!
   useEffect(() => {
     if (isLogged) {
       navigate("/dashboard");
