@@ -10,6 +10,8 @@ import {
   BiReset,
 } from "react-icons/bi";
 
+import { Link } from "react-router-dom";
+
 const Sidebar = () => {
   const reload = () => {
     window.location.reload();
@@ -29,7 +31,7 @@ const Sidebar = () => {
           <span>
             <BiHomeAlt2 />
           </span>
-          Dashboard
+          <Link to="/dashboard">Dashboard</Link>
         </li>
         <li>
           <span>
@@ -41,7 +43,7 @@ const Sidebar = () => {
           <span>
             <BiSolidBarcode />
           </span>
-          Prodotti
+          <Link to="/prodotti">Prodotti</Link>
         </li>
         <li>
           <span>

@@ -6,6 +6,7 @@ export const initialState = {
     type: null,
     test: "prova",
     branches: [],
+    loginPoupup: false,
   },
   products: [],
   visualCondition: {},

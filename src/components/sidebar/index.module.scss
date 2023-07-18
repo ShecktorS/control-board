@@ -58,6 +58,11 @@
           transform: translateX(20px) translateY(5px);
         }
       }
+
+      a {
+        text-decoration: none;
+        color: $secondary;
+      }
     }
   }
 

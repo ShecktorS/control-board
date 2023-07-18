@@ -1,26 +1,26 @@
 import styles from "./index.module.scss";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { Context } from "../../store";
 
 import Board from "../../components/board";
 import Loader from "../../components/loader";
 
 const BoardPage = () => {
-  const [showMsg, setShowMsg] = useState(true);
-  const [loader, setLoader] = useState(true);
+  const { state, dispatch } = useContext(Context);
+  const { loginPoupup } = state.PersonContext;
 
   useEffect(() => {
     setTimeout(() => {
-      setLoader(false);
-      setShowMsg(false);
+      dispatch({ type: "HIDE_LOGIN_POUPUP" });
     }, 2000);
   }, []);
 
   return (
     <div className={styles.BoardPage}>
       <section className={styles.centralSection}>
-        {loader ? <Loader /> : <Board />}
+        {loginPoupup ? <Loader /> : <Board />}
       </section>
-      <div className={`${styles.poupup} ${showMsg && styles.showPoupup}`}>
+      <div className={`${styles.poupup} ${loginPoupup && styles.showPoupup}`}>
         <p>Login eseguito correttamente!</p>
         {/* TODO: Sistemare in un componente */}
       </div>

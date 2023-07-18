@@ -18,6 +18,7 @@ const Login = () => {
     e.preventDefault();
     if (person.name === auth[0].name && person.password === auth[0].password) {
       dispatch({ type: "LOGIN_ADMIN" });
+      dispatch({ type: "SHOW_LOGIN_POUPUP" });
       navigate("/dashboard");
       console.log("Richiesta admin", state);
     } else if (
@@ -25,6 +26,7 @@ const Login = () => {
       person.password === auth[1].password
     ) {
       dispatch({ type: "LOGIN_USER" });
+      dispatch({ type: "SHOW_LOGIN_POUPUP" });
       navigate("/dashboard");
       console.log("Richiesta user");
     } else {

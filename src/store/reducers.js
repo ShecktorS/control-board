@@ -24,6 +24,16 @@ export const mainReducer = (state, action) => {
           name: user.name,
         },
       };
+    case "SHOW_LOGIN_POUPUP":
+      return {
+        ...state,
+        PersonContext: { ...state.PersonContext, loginPoupup: true },
+      };
+    case "HIDE_LOGIN_POUPUP":
+      return {
+        ...state,
+        PersonContext: { ...state.PersonContext, loginPoupup: false },
+      };
     case "LOGOUT":
       return {
         ...state,

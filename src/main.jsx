@@ -20,6 +20,7 @@ const router = createBrowserRouter(
         <Route path="pippo" element={<h1>PIPPO</h1>} />
         <Route path="dashboard" element={<BoardPage />} />
         <Route path="login" element={<LoginPage />} />
+        <Route path="prodotti" element={<h1>Pagina dei prodotti</h1>} />
       </Route>
       <Route path="*" element={<Error />} /> {/* For ERROR */}
     </Route>
