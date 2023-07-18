@@ -25,8 +25,11 @@ const ModalForm = ({ setFormIsVisible }) => {
 
   const onHandelSubmit = (e) => {
     e.preventDefault();
+    localStorage.setItem(
+      "branches",
+      JSON.stringify([...branches, branchContext])
+    );
     dispatch({ type: "ADD_BRANCH", payload: branchContext });
-    localStorage.setItem("branches", JSON.stringify(branches));
     setBranchContext({
       name: "",
       category: "",
@@ -34,6 +37,7 @@ const ModalForm = ({ setFormIsVisible }) => {
       products: [],
     });
     setFormIsVisible((prev) => !prev);
+    console.log(branches);
   };
 
   return (

@@ -32,8 +32,9 @@ function App() {
         {isLogged && <Sidebar />}
         <div style={{ paddingLeft: removePadding }} className={styles.content}>
           {isLogged && <Header />}
-
-          <Outlet />
+          <div className={styles.outletContainer}>
+            <Outlet />
+          </div>
         </div>
       </div>
     </Context.Provider>

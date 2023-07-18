@@ -68,6 +68,14 @@ export const mainReducer = (state, action) => {
           branches: [...action.payload],
         },
       };
+    case "GET_BRANCH_PRODUCTS":
+      return {
+        ...state,
+        PersonContext: {
+          ...state.PersonContext,
+          branches: [...action.payload],
+        },
+      };
     // case "GET_BRANCH_PRODUCTS":
     //   return {
     //     ...state,

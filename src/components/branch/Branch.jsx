@@ -12,7 +12,7 @@ const Branch = ({ data }) => {
 
   const onHandleClick = () => {
     console.log("clicked " + data.name);
-    navigate(`/branches/${data.name}`);
+    navigate(`/filiali/${data.name}`);
   };
 
   const onHandleDeleteBranch = (e) => {
