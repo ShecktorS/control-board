@@ -14,6 +14,8 @@ const Login = () => {
   const user = { name: "user", password: "user" };
   const auth = [admin, user];
 
+  const setLocalLogin = () => localStorage.setItem("isLogged", true);
+
   const accessRequest = (e) => {
     e.preventDefault();
     if (person.name === auth[0].name && person.password === auth[0].password) {
@@ -21,6 +23,7 @@ const Login = () => {
       dispatch({ type: "SHOW_LOGIN_POUPUP" });
       navigate("/dashboard");
       console.log("Richiesta admin", state);
+      setLocalLogin();
     } else if (
       person.name === auth[1].name &&
       person.password === auth[1].password
@@ -29,6 +32,7 @@ const Login = () => {
       dispatch({ type: "SHOW_LOGIN_POUPUP" });
       navigate("/dashboard");
       console.log("Richiesta user");
+      setLocalLogin();
     } else {
       alert("Accesso non autorizzato");
       setPerson({ name: "", password: "" });

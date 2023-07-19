@@ -15,17 +15,20 @@ function App() {
 
   const [state, dispatch] = useReducer(mainReducer, initialState);
   const [removePadding, setRemovePadding] = useState(0);
-  const { isLogged } = state.PersonContext;
+
+  const [isLogged, setIsLogged] = useState(false);
 
   // FIXME: DA RIATTIVARE!!!
   useEffect(() => {
-    if (isLogged) {
+    const localLogin = localStorage.getItem("isLogged");
+    if (localLogin) {
+      setIsLogged(localLogin);
       navigate("/dashboard");
       setRemovePadding("");
     } else {
       navigate("/login");
     }
-  }, []);
+  }, [state.PersonContext.isLogged]);
 
   return (
     <Context.Provider value={{ state, dispatch }}>

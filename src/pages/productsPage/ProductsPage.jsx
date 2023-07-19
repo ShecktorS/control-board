@@ -11,6 +11,7 @@ const ProductsPage = () => {
   return (
     <div className={styles.ProductsPage}>
       <div className={styles.productsContainer}>
+        <h1>Tutti i prodotti</h1>
         {products.map((item) => (
           <BranchProductItem key={item.id} product={item} />
         ))}
