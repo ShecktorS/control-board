@@ -1,8 +1,14 @@
 import styles from "./index.module.scss";
 
+import { useNavigate } from "react-router-dom";
+
 const BranchProductItem = ({ product }) => {
+  const navigate = useNavigate();
+
+  const onHandleClick = () => navigate(`prodotti/${product.id}`);
+
   return (
-    <div className={styles.BranchProductItem}>
+    <div onClick={onHandleClick} className={styles.BranchProductItem}>
       <img src={product.image} alt="product Image" />
       <div className={styles.textContainer}>
         <p className={styles.title}>

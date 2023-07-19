@@ -17,20 +17,7 @@ const Board = () => {
   const { branches, type } = state.PersonContext;
 
   const [formIsVisible, setFormIsVisible] = useState(false);
-  //Funzione per l'eliminazione dei prodotti all'interno del branch
-  // const deleteProduct = (productId, branchName) => {
-  //   setBranches((prev) =>
-  //     prev.map((branch) => {
-  //       if (branch.name === branchName) {
-  //         const updatedProducts = branch.products.filter(
-  //           (product) => product.id !== productId
-  //         );
-  //         return { ...branch, products: updatedProducts };
-  //       }
-  //       return branch;
-  //     })
-  //   );
-  // };
+
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
@@ -55,7 +42,7 @@ const Board = () => {
         }}
         className={styles.branches}
       >
-        Dashboard (Clicca per lo state)
+        Dashboard
       </h1>
       <section>
         {branches.length < 1 && <h2>Non è presente alcuno store!</h2>}

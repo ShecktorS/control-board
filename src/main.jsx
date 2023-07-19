@@ -14,6 +14,7 @@ import BoardPage from "./pages/boardPage/BoardPage.jsx";
 import "./index.scss";
 import BranchPage from "./pages/branchPage/BranchPage.jsx";
 import ProductsPage from "./pages/productsPage/ProductsPage.jsx";
+import BranchProductPage from "./pages/branchProductPage/BranchProductPage.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,6 +25,10 @@ const router = createBrowserRouter(
         <Route path="login" element={<LoginPage />} />
         <Route path="prodotti" element={<ProductsPage />} />
         <Route path="filiali/:name" element={<BranchPage />} />
+        <Route
+          path="filiali/:name/prodotti/:id"
+          element={<BranchProductPage />}
+        />
         <Route
           path="aiuto"
           element={
