@@ -11,14 +11,13 @@ import {
   BiReset,
 } from "react-icons/bi";
 
-import { Link, UNSAFE_LocationContext } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Context } from "../../store";
 
 const Sidebar = () => {
   const { state, dispatch } = useContext(Context);
 
   const reload = () => {
-    dispatch({ type: "LOGOUT" });
     window.location.reload();
     localStorage.removeItem("isLogged");
     alert("Logout eseguito con successo!");
@@ -75,7 +74,12 @@ const Sidebar = () => {
             Aiuto
           </Link>
         </li>
-        <li onClick={reload}>
+        <li
+          onClick={() => {
+            reload();
+            dispatch({ type: "LOGOUT" });
+          }}
+        >
           <span>
             <BiExit />
           </span>

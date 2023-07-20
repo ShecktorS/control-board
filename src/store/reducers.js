@@ -35,6 +35,10 @@ export const mainReducer = (state, action) => {
         PersonContext: { ...state.PersonContext, loginPoupup: false },
       };
     case "LOGOUT":
+      localStorage.setItem(
+        "branches",
+        JSON.stringify(state.PersonContext.branches)
+      );
       return {
         ...state,
         PersonContext: { ...state.PersonContext, isLogged: false, type: "" },
@@ -69,6 +73,22 @@ export const mainReducer = (state, action) => {
         },
       };
     case "GET_BRANCH_PRODUCTS":
+      return {
+        ...state,
+        PersonContext: {
+          ...state.PersonContext,
+          branches: [...action.payload],
+        },
+      };
+    case "EDIT_BRANCH_DETAILS":
+      return {
+        ...state,
+        visualCondition: {
+          ...state.visualCondition,
+          editBranch: action.payload,
+        },
+      };
+    case "DELETE_PRODUCT":
       return {
         ...state,
         PersonContext: {

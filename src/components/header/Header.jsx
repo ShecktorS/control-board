@@ -7,6 +7,8 @@ const Header = () => {
   const { state } = useContext(Context);
   const { name } = state.PersonContext;
 
+  const storedName = localStorage.getItem("namePerson");
+
   return (
     <div className={styles.Header}>
       <div className={styles.left_space}></div>
@@ -21,8 +23,8 @@ const Header = () => {
           alt="pic profile"
         />
         <div className={styles.info_profile_content}>
-          <h3>{name}</h3>
-          <p>{name}@controlBoard.com</p>
+          <h3>{name || storedName}</h3>
+          <p>{name || storedName}@controlBoard.com</p>
         </div>
         <div
           className={styles.point}

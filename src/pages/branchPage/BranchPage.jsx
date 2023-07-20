@@ -2,6 +2,7 @@ import { Fragment, useContext, useEffect } from "react";
 import styles from "./index.module.scss";
 import { useParams } from "react-router-dom";
 import { Context } from "../../store";
+import { FiEdit } from "react-icons/fi";
 
 import BranchProductItem from "../../components/branchProductItem/BranchProductItem";
 import ReturnButton from "../../components/returnButton/ReturnButton";
@@ -13,9 +14,10 @@ const BranchPage = () => {
   const { branches } = PersonContext;
 
   const [thisBranch] = branches.filter((branch) => branch.name === name);
+  const otherBranches = branches.filter((branch) => branch.name != name);
 
   useEffect(() => {
-    if (thisBranch?.products.length < 1) {
+    if (thisBranch?.products?.length < 1) {
       thisBranch.products =
         thisBranch.category.toLowerCase() !== "all" && "vuoto"
           ? products.filter(
@@ -26,7 +28,7 @@ const BranchPage = () => {
           : thisBranch.category.toLowerCase() !== "vuoto"
           ? []
           : "";
-      const otherBranches = branches.filter((branch) => branch.name != name);
+
       const newBranches = [...otherBranches, thisBranch];
       dispatch({ type: "GET_BRANCH_PRODUCTS", payload: newBranches });
     }
@@ -42,7 +44,18 @@ const BranchPage = () => {
             src="https://th.bing.com/th/id/OIG.nzDOo9OQgsLuIpILrIt6?pid=ImgGn"
             alt="Image Branch"
           />
-          <h1 className={styles.branchName}>{name}</h1>
+          <h1 className={styles.branchName}>
+            {name} - <em> {thisBranch?.location}</em>
+          </h1>
+          <FiEdit
+            onClick={() =>
+              dispatch({
+                type: "EDIT_BRANCH_DETAILS",
+                payload: state.visualCondition.editBranch ? false : true,
+              })
+            }
+            className={styles.editSymbol}
+          />
         </div>
         <div className={styles.bodyBranch}>
           <ReturnButton
@@ -50,13 +63,18 @@ const BranchPage = () => {
             className={styles.returnButton}
           />
           <div className={styles.branchDetail}>
-            <p onClick={() => console.log(state)}>Branch details </p>
+            <p onClick={() => console.log(state)}>{thisBranch?.location} </p>
+            <p>Numero di prodotti: {thisBranch.products.length || ""}</p>
             {/* TODO: Sistemare aggiungendo un'animazione che espone i dettagli del branch ed eventualmente autorizza la modifica */}
           </div>
           <div className={styles.branchProductItemContainer}>
             {thisBranch.products.map((product) => (
               <Fragment key={product.id}>
-                <BranchProductItem product={product} />
+                <BranchProductItem
+                  product={product}
+                  thisBranch={thisBranch}
+                  otherBranches={otherBranches}
+                />
               </Fragment>
             ))}
             {thisBranch.products.length < 1 && (

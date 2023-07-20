@@ -9,6 +9,6 @@ export const initialState = {
     loginPoupup: false,
   },
   products: [],
-  visualCondition: {},
+  visualCondition: { editBranch: false },
   // optional -> visualCondition
 };

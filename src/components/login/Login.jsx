@@ -19,6 +19,7 @@ const Login = () => {
   const accessRequest = (e) => {
     e.preventDefault();
     if (person.name === auth[0].name && person.password === auth[0].password) {
+      localStorage.setItem("namePerson", auth[0].name);
       dispatch({ type: "LOGIN_ADMIN" });
       dispatch({ type: "SHOW_LOGIN_POUPUP" });
       navigate("/dashboard");
@@ -30,6 +31,8 @@ const Login = () => {
     ) {
       dispatch({ type: "LOGIN_USER" });
       dispatch({ type: "SHOW_LOGIN_POUPUP" });
+      localStorage.setItem("namePerson", auth[1].name);
+
       navigate("/dashboard");
       console.log("Richiesta user");
       setLocalLogin();

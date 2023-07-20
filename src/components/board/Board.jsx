@@ -18,6 +18,8 @@ const Board = () => {
 
   const [formIsVisible, setFormIsVisible] = useState(false);
 
+  const storedType = localStorage.getItem("namePerson");
+
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
@@ -53,71 +55,21 @@ const Board = () => {
         ))}
       </section>
 
-      {/* ------------------------------------------------------------------------ */}
-      {/* {productsContext.isVisible && (
-        <div className={styles.productsList}>
-          {productsContext.payload.length < 1 ? (
-            <>
-              <h3>Non è presente alcun prodotto</h3>
-              <p>Per favore, elimina questo store.</p>
-            </>
-          ) : (
-            <>
-              {productsContext.payload.map((product) => (
-                <div key={product.id}>
-                  <h1>-{productsContext.branch}-</h1>
-                  <img src={product.image} />
-                  <p>#{product.id}</p>
-                  <h4>{product.title}</h4>
-
-                  {state.personContext.type === "admin" && (
-                    <p
-                      onClick={() => {
-                        deleteProduct(product.id, productsContext.branch);
-                        setProductsContext({
-                          ...productsContext,
-                          payload: productsContext.payload.filter(
-                            (item) => item.id != product.id
-                          ),
-                        });
-                      }}
-                      className={styles.deleteProduct}
-                    >
-                      elimina
-                    </p>
-                  )}
-
-                  <p className={styles.price}>€{product.price}</p>
-                </div>
-              ))}{" "}
-            </>
-          )}
-          <button
-            onClick={() => {
-              setProductsContext({ ...productsContext, isVisible: false });
-              localStorage.setItem("branches", JSON.stringify(branches));
-            }}
-            className={styles.closeProductsList}
-          >
-            X
-          </button>
-        </div>
-      )} */}
-
       {/* ---------Condizione che mostra pulsante per aggiunta del branches---- */}
       {/* --------------------------------------------------------------------- */}
-      {type === "admin" && (
-        <div className={styles.addStoreBtn}>
-          <button onClick={() => setFormIsVisible((prev) => !prev)}>
-            <BsBuildingAdd style={{ opacity: formIsVisible && 0 }} />
-            <IoMdCloseCircle
-              className={`${styles.closeModalAddStore} ${
-                formIsVisible && styles.showAnimation
-              }`}
-            />
-          </button>
-        </div>
-      )}
+      {type === "admin" ||
+        (storedType === "admin" && (
+          <div className={styles.addStoreBtn}>
+            <button onClick={() => setFormIsVisible((prev) => !prev)}>
+              <BsBuildingAdd style={{ opacity: formIsVisible && 0 }} />
+              <IoMdCloseCircle
+                className={`${styles.closeModalAddStore} ${
+                  formIsVisible && styles.showAnimation
+                }`}
+              />
+            </button>
+          </div>
+        ))}
 
       <div
         className={`${styles.modalContainer} ${

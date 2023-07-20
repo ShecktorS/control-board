@@ -2,13 +2,22 @@
   background-color: white;
   height: 70px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   cursor: pointer;
 
   &:hover {
-    background-color: $accent;
+    background-color: $primary-button;
     color: white;
+  }
+
+  .removeIcon {
+    margin-left: 15px;
+    font-size: 1.2em;
+
+    &:hover {
+      color: $accent;
+    }
   }
 
   img {
@@ -36,5 +45,9 @@
     //     display: none;
     //   }
     // }
+  }
+
+  .price {
+    margin-right: 15px;
   }
 }
