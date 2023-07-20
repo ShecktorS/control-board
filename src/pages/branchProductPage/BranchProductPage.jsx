@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import styles from "./index.module.scss";
 import { useParams, useNavigate } from "react-router-dom";
-import { IoReturnDownBack } from "react-icons/io5";
 import { Context } from "../../store";
+
+import ReturnButton from "../../components/returnButton/ReturnButton";
 
 const BranchProductPage = () => {
   const { name, id } = useParams();
-  const navigate = useNavigate();
   const { state } = useContext(Context);
   const { branches } = state.PersonContext;
   const [thisBranch] = branches.filter((branch) => branch.name === name);
@@ -24,15 +24,11 @@ const BranchProductPage = () => {
   } = thisProduct;
 
   let note = "";
+  const direction = `/filiali/${name}`;
 
   return (
     <div className={styles.BranchProductPage}>
-      <button
-        className={styles.returnBtn}
-        onClick={() => navigate(`/filiali/${name}`)}
-      >
-        <IoReturnDownBack />
-      </button>
+      <ReturnButton whereNavigate={direction} />
       <div className={styles.productContainer}>
         <div className={styles.infoContainer}>
           <div className={styles.imgContainer}>

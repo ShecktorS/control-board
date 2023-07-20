@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { Context } from "../../store";
 
 import BranchProductItem from "../../components/branchProductItem/BranchProductItem";
+import ReturnButton from "../../components/returnButton/ReturnButton";
 
 const BranchPage = () => {
   const { name } = useParams();
@@ -31,6 +32,8 @@ const BranchPage = () => {
     }
   }, []);
 
+  const direction = `/dashboard`;
+
   return (
     <div className={styles.BranchPage}>
       <div className={styles.container}>
@@ -42,6 +45,10 @@ const BranchPage = () => {
           <h1 className={styles.branchName}>{name}</h1>
         </div>
         <div className={styles.bodyBranch}>
+          <ReturnButton
+            whereNavigate={direction}
+            className={styles.returnButton}
+          />
           <div className={styles.branchDetail}>
             <p onClick={() => console.log(state)}>Branch details </p>
             {/* TODO: Sistemare aggiungendo un'animazione che espone i dettagli del branch ed eventualmente autorizza la modifica */}
