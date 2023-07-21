@@ -6,17 +6,20 @@ import { FiEdit } from "react-icons/fi";
 
 import BranchProductItem from "../../components/branchProductItem/BranchProductItem";
 import ReturnButton from "../../components/returnButton/ReturnButton";
+import EditBranchModal from "../../components/editBranchModal/editBranchModal";
 
 const BranchPage = () => {
   const { name } = useParams();
   const { state, dispatch } = useContext(Context);
   const { PersonContext, products } = state;
+  const { deleteProductCondition, editBranchCondition } = state.visualCondition;
   const { branches } = PersonContext;
 
   const [thisBranch] = branches.filter((branch) => branch.name === name);
   const otherBranches = branches.filter((branch) => branch.name != name);
 
   useEffect(() => {
+    // FIXME: Sistemare il caricamento dei prodotti nel submit del ModalForm
     if (thisBranch?.products?.length < 1) {
       thisBranch.products =
         thisBranch.category.toLowerCase() !== "all" && "vuoto"
@@ -50,8 +53,7 @@ const BranchPage = () => {
           <FiEdit
             onClick={() =>
               dispatch({
-                type: "EDIT_BRANCH_DETAILS",
-                payload: state.visualCondition.editBranch ? false : true,
+                type: "DELETE_PRODUCT_CONDITION",
               })
             }
             className={styles.editSymbol}
@@ -62,9 +64,22 @@ const BranchPage = () => {
             whereNavigate={direction}
             className={styles.returnButton}
           />
-          <div className={styles.branchDetail}>
-            <p onClick={() => console.log(state)}>{thisBranch?.location} </p>
-            <p>Numero di prodotti: {thisBranch.products.length || ""}</p>
+          <div
+            className={`${styles.branchDetail} ${
+              deleteProductCondition && styles.openDetail
+            }`}
+          >
+            <button
+              onClick={() =>
+                dispatch({
+                  type: "EDIT_BRANCH_CONDITION",
+                })
+              }
+              style={{ opacity: deleteProductCondition ? 1 : 0 }}
+              className={styles.editInfoButton}
+            >
+              Modifica le informazioni della filiale
+            </button>
             {/* TODO: Sistemare aggiungendo un'animazione che espone i dettagli del branch ed eventualmente autorizza la modifica */}
           </div>
           <div className={styles.branchProductItemContainer}>
@@ -82,8 +97,21 @@ const BranchPage = () => {
             )}
           </div>
         </div>
+        <p>Numero di prodotti: {thisBranch.products.length || ""}</p>
       </div>
-      <button>Aggiungi un prodotto</button>
+      <button className={styles.addProductButton}>Aggiungi un prodotto</button>
+      <div
+        style={{
+          visibility: editBranchCondition ? "visible" : "hidden",
+          zIndex: editBranchCondition ? 1 : -1,
+        }}
+        className={styles.editBranchModalContainer}
+      >
+        <EditBranchModal
+          thisBranch={thisBranch}
+          otherBranches={otherBranches}
+        />
+      </div>
     </div>
   );
 };

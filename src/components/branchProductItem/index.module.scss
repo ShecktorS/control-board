@@ -14,9 +14,11 @@
   .removeIcon {
     margin-left: 15px;
     font-size: 1.2em;
+    width: 0;
+    transition: all 0.4s ease;
 
     &:hover {
-      color: $accent;
+      transform: scale(1.2);
     }
   }
 
@@ -24,6 +26,7 @@
     width: 20%;
     height: 80%;
     object-fit: contain;
+    mix-blend-mode: multiply;
   }
 
   .textContainer {

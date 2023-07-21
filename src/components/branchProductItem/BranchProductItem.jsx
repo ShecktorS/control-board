@@ -10,7 +10,7 @@ const BranchProductItem = ({ product, thisBranch, otherBranches }) => {
 
   const navigate = useNavigate();
   const { state, dispatch } = useContext(Context);
-  const { editBranch } = state.visualCondition;
+  const { deleteProductCondition } = state.visualCondition;
   const { branches } = state.PersonContext;
 
   const onDeleteProduct = (e) => {
@@ -37,12 +37,12 @@ const BranchProductItem = ({ product, thisBranch, otherBranches }) => {
 
   return (
     <div onClick={onHandleClick} className={styles.BranchProductItem}>
-      {editBranch && (
-        <MdOutlineRemoveCircle
-          onClick={onDeleteProduct}
-          className={styles.removeIcon}
-        />
-      )}
+      <MdOutlineRemoveCircle
+        style={{ width: deleteProductCondition ? "20px" : "0px" }}
+        onClick={onDeleteProduct}
+        className={styles.removeIcon}
+      />
+
       <img src={product.image} alt="product Image" />
       <div className={styles.textContainer}>
         <p className={styles.title}>
@@ -56,9 +56,7 @@ const BranchProductItem = ({ product, thisBranch, otherBranches }) => {
         </p> */}
       </div>
 
-      <p className={styles.price}>
-        € {product.price.toString().replace(".", ",")}
-      </p>
+      <p className={styles.price}>€ {parseInt(product.price)}</p>
     </div>
   );
 };

@@ -80,12 +80,12 @@ export const mainReducer = (state, action) => {
           branches: [...action.payload],
         },
       };
-    case "EDIT_BRANCH_DETAILS":
+    case "DELETE_PRODUCT_CONDITION":
       return {
         ...state,
         visualCondition: {
           ...state.visualCondition,
-          editBranch: action.payload,
+          deleteProductCondition: !state.visualCondition.deleteProductCondition,
         },
       };
     case "DELETE_PRODUCT":
@@ -94,6 +94,14 @@ export const mainReducer = (state, action) => {
         PersonContext: {
           ...state.PersonContext,
           branches: [...action.payload],
+        },
+      };
+    case "EDIT_BRANCH_CONDITION":
+      return {
+        ...state,
+        visualCondition: {
+          ...state.visualCondition,
+          editBranchCondition: !state.visualCondition.editBranchCondition,
         },
       };
     // case "GET_BRANCH_PRODUCTS":

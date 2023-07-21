@@ -14,7 +14,7 @@ const ReturnButton = ({ whereNavigate }) => {
       onClick={() => {
         navigate(whereNavigate);
         dispatch({
-          type: "EDIT_BRANCH_DETAILS",
+          type: "DELETE_PRODUCT_CONDITION",
           payload: false,
         });
       }}
