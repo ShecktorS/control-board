@@ -1,0 +1,19 @@
+.MiniProductToAdd {
+  width: 160px;
+
+  img {
+    height: 150px;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+    cursor: pointer;
+    //mix-blend-mode: multiply;
+
+    &:hover {
+      filter: contrast(0.8);
+    }
+  }
+
+  h4 {
+    margin: 0;
+  }
+}
