@@ -112,14 +112,14 @@ export const mainReducer = (state, action) => {
           branches: [...action.payload],
         },
       };
-    // case "GET_BRANCH_PRODUCTS":
-    //   return {
-    //     ...state,
-    //     PersonContext: {
-    //       ...state.PersonContext,
-    //       branches: [...action.payload],
-    //     },
-    //   };
+    case "ADD_PRODUCT_CONDITION":
+      return {
+        ...state,
+        visualCondition: {
+          ...state.visualCondition,
+          addProductCondition: !state.visualCondition.addProductCondition,
+        },
+      };
 
     default:
       return state;

@@ -11,15 +11,16 @@ import {
   BiReset,
 } from "react-icons/bi";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../../store";
 
 const Sidebar = () => {
   const { state, dispatch } = useContext(Context);
 
   const reload = () => {
-    window.location.reload();
+    preventError();
     localStorage.removeItem("isLogged");
+    window.location.reload();
     alert("Logout eseguito con successo!");
   };
 
@@ -28,6 +29,8 @@ const Sidebar = () => {
     reload();
     alert("I dati originali sono stati caricati correttamente");
   };
+  const navigate = useNavigate();
+  const preventError = () => navigate("/login");
 
   return (
     <div className={styles.Sidebar}>

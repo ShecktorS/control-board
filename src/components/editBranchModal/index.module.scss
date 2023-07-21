@@ -32,6 +32,7 @@
     input {
       border: none;
       border-radius: 30px;
+      font-size: 1em;
       padding: 0 30px;
       height: 40px;
       transition: opacity 0.4s ease;
@@ -45,6 +46,7 @@
 
     button {
       background-color: $accent;
+      text-transform: uppercase;
     }
   }
 

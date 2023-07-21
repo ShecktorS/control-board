@@ -12,6 +12,7 @@ export const initialState = {
   visualCondition: {
     deleteProductCondition: false,
     editBranchCondition: false,
+    addProductCondition: false,
   },
   // optional -> visualCondition
 };

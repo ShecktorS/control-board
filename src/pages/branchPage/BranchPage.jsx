@@ -7,13 +7,16 @@ import { FiEdit } from "react-icons/fi";
 import BranchProductItem from "../../components/branchProductItem/BranchProductItem";
 import ReturnButton from "../../components/returnButton/ReturnButton";
 import EditBranchModal from "../../components/editBranchModal/editBranchModal";
+import AddProductModal from "../../components/addProductModal/AddProductModal";
 
 const BranchPage = () => {
   const { name } = useParams();
   const { state, dispatch } = useContext(Context);
   const { PersonContext, products } = state;
-  const { deleteProductCondition, editBranchCondition } = state.visualCondition;
+  const { deleteProductCondition, editBranchCondition, addProductCondition } =
+    state.visualCondition;
   const { branches } = PersonContext;
+  const storedName = localStorage.getItem("namePerson");
 
   const [thisBranch] = branches.filter((branch) => branch.name === name);
   const otherBranches = branches.filter((branch) => branch.name != name);
@@ -50,14 +53,16 @@ const BranchPage = () => {
           <h1 className={styles.branchName}>
             {name} - <em> {thisBranch?.location}</em>
           </h1>
-          <FiEdit
-            onClick={() =>
-              dispatch({
-                type: "DELETE_PRODUCT_CONDITION",
-              })
-            }
-            className={styles.editSymbol}
-          />
+          {storedName === "admin" && (
+            <FiEdit
+              onClick={() =>
+                dispatch({
+                  type: "DELETE_PRODUCT_CONDITION",
+                })
+              }
+              className={styles.editSymbol}
+            />
+          )}
         </div>
         <div className={styles.bodyBranch}>
           <ReturnButton
@@ -80,7 +85,6 @@ const BranchPage = () => {
             >
               Modifica le informazioni della filiale
             </button>
-            {/* TODO: Sistemare aggiungendo un'animazione che espone i dettagli del branch ed eventualmente autorizza la modifica */}
           </div>
           <div className={styles.branchProductItemContainer}>
             {thisBranch.products.map((product) => (
@@ -98,10 +102,41 @@ const BranchPage = () => {
           </div>
         </div>
         {thisBranch.products.length > 0 && (
-          <p>Numero di prodotti: {thisBranch.products.length}</p>
+          <p onClick={() => dispatch({ type: "ADD_PRODUCT_CONDITION" })}>
+            Numero di prodotti: {thisBranch.products.length}
+          </p>
         )}
       </div>
-      <button className={styles.addProductButton}>Aggiungi un prodotto</button>
+      {storedName === "admin" && (
+        <button
+          onClick={() => dispatch({ type: "ADD_PRODUCT_CONDITION" })}
+          style={{ right: addProductCondition ? "-300px" : "" }}
+          className={styles.addProductButton}
+        >
+          Aggiungi un prodotto
+        </button>
+      )}
+
+      <div
+        style={{
+          opacity: addProductCondition ? 1 : 0,
+          zIndex: addProductCondition ? 1 : -1,
+        }}
+        onClick={() => dispatch({ type: "ADD_PRODUCT_CONDITION" })}
+        className={styles.addproductModalContainer}
+      >
+        <div
+          style={{
+            transform: addProductCondition
+              ? "translate(0)"
+              : "translate(1000px)",
+          }}
+          className={styles.swipeContainer}
+        >
+          <AddProductModal />
+        </div>
+      </div>
+
       <div
         style={{
           visibility: editBranchCondition ? "visible" : "hidden",

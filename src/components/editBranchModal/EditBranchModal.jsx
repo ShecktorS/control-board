@@ -63,7 +63,7 @@ const EditBranchModal = ({ thisBranch, otherBranches }) => {
         required
       />
       <div className={styles.buttons}>
-        <button onClick={closeModal}>Cancella</button>
+        <button onClick={closeModal}>Annulla</button>
         <input
           onMouseOver={() => setShowMessage("100%")}
           onMouseOut={() => setShowMessage("0")}

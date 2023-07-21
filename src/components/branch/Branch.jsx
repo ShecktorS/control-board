@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 const Branch = ({ data }) => {
   const { state, dispatch } = useContext(Context);
   const { type, branches } = state.PersonContext;
+  const storedName = localStorage.getItem("namePerson");
 
   const navigate = useNavigate();
 
@@ -49,7 +50,7 @@ const Branch = ({ data }) => {
           ? "Vestiti"
           : ""}
       </p>
-      {type === "admin" && (
+      {storedName === "admin" && (
         <button onClick={(e) => onHandleDeleteBranch(e)}>Elimina</button>
       )}
     </div>
