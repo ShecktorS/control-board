@@ -6,7 +6,7 @@ import { FiEdit } from "react-icons/fi";
 
 import BranchProductItem from "../../components/branchProductItem/BranchProductItem";
 import ReturnButton from "../../components/returnButton/ReturnButton";
-import EditBranchModal from "../../components/editBranchModal/editBranchModal";
+import EditBranchModal from "../../components/editBranchModal/EditBranchModal";
 import AddProductModal from "../../components/addProductModal/AddProductModal";
 
 const BranchPage = () => {
