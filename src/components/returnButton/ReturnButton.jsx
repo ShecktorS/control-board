@@ -6,6 +6,7 @@ import { Context } from "../../store";
 
 const ReturnButton = ({ whereNavigate }) => {
   const { state, dispatch } = useContext(Context);
+  const { deleteProductCondition } = state.visualCondition;
   const navigate = useNavigate();
 
   return (
@@ -13,10 +14,11 @@ const ReturnButton = ({ whereNavigate }) => {
       className={styles.ReturnButton}
       onClick={() => {
         navigate(whereNavigate);
-        dispatch({
-          type: "DELETE_PRODUCT_CONDITION",
-          payload: false,
-        });
+        if (deleteProductCondition) {
+          dispatch({
+            type: "DELETE_PRODUCT_CONDITION",
+          });
+        }
       }}
     >
       <IoReturnDownBack />

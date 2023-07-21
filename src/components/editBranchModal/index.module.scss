@@ -1,6 +1,5 @@
 .EditBranchModal {
   background-color: white;
-  //   height: 450px;
   width: 40vw;
   min-width: 400px;
   border-radius: 30px;
@@ -13,7 +12,14 @@
   padding: 30px;
 
   input {
+    border-radius: 30px;
     height: 40px;
+    font-size: 1em;
+    text-align: center;
+    text-transform: uppercase;
+    border: none;
+    background-color: $secondary;
+    outline-color: $primary-button;
   }
 
   .buttons {

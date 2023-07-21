@@ -16,7 +16,7 @@
   form {
     height: 500px;
     width: clamp(300px, 70vw, 500px);
-    border-radius: 10px;
+    border-radius: 30px;
     margin: 0 0 100px;
     padding: 50px 10px;
     background-color: $background;
@@ -42,7 +42,7 @@
       width: 90%;
       font-size: 1.5em;
       margin-bottom: 20px;
-      border-radius: 10px;
+      border-radius: 30px;
       background-color: $secondary;
       border: none;
     }
@@ -71,7 +71,7 @@
         padding: 0 20px;
         letter-spacing: 3px;
         border: none;
-        border-radius: 10px;
+        border-radius: 30px;
         background-color: $primary-button;
         color: $secondary;
         cursor: pointer;

@@ -57,19 +57,18 @@ const Board = () => {
 
       {/* ---------Condizione che mostra pulsante per aggiunta del branches---- */}
       {/* --------------------------------------------------------------------- */}
-      {type === "admin" ||
-        (storedType === "admin" && (
-          <div className={styles.addStoreBtn}>
-            <button onClick={() => setFormIsVisible((prev) => !prev)}>
-              <BsBuildingAdd style={{ opacity: formIsVisible && 0 }} />
-              <IoMdCloseCircle
-                className={`${styles.closeModalAddStore} ${
-                  formIsVisible && styles.showAnimation
-                }`}
-              />
-            </button>
-          </div>
-        ))}
+      {storedType === "admin" && (
+        <div className={styles.addStoreBtn}>
+          <button onClick={() => setFormIsVisible((prev) => !prev)}>
+            <BsBuildingAdd style={{ opacity: formIsVisible && 0 }} />
+            <IoMdCloseCircle
+              className={`${styles.closeModalAddStore} ${
+                formIsVisible && styles.showAnimation
+              }`}
+            />
+          </button>
+        </div>
+      )}
 
       <div
         className={`${styles.modalContainer} ${

@@ -97,7 +97,9 @@ const BranchPage = () => {
             )}
           </div>
         </div>
-        <p>Numero di prodotti: {thisBranch.products.length || ""}</p>
+        {thisBranch.products.length > 0 && (
+          <p>Numero di prodotti: {thisBranch.products.length}</p>
+        )}
       </div>
       <button className={styles.addProductButton}>Aggiungi un prodotto</button>
       <div

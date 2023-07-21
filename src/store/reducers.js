@@ -104,6 +104,14 @@ export const mainReducer = (state, action) => {
           editBranchCondition: !state.visualCondition.editBranchCondition,
         },
       };
+    case "EDIT_BRANCH_INFO":
+      return {
+        ...state,
+        PersonContext: {
+          ...state.PersonContext,
+          branches: [...action.payload],
+        },
+      };
     // case "GET_BRANCH_PRODUCTS":
     //   return {
     //     ...state,
