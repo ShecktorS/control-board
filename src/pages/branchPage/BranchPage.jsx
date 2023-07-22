@@ -1,4 +1,4 @@
-import { Fragment, useContext, useEffect } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import styles from "./index.module.scss";
 import { useParams } from "react-router-dom";
 import { Context } from "../../store";
@@ -21,24 +21,35 @@ const BranchPage = () => {
   const [thisBranch] = branches.filter((branch) => branch.name === name);
   const otherBranches = branches.filter((branch) => branch.name != name);
 
+  const [selectedProducts, setSelectedProducts] = useState([]);
+
   useEffect(() => {
     // FIXME: Sistemare il caricamento dei prodotti nel submit del ModalForm
     if (thisBranch?.products?.length < 1) {
       thisBranch.products =
-        thisBranch.category.toLowerCase() !== "all" && "vuoto"
+        thisBranch.category.toLowerCase() !== "all" &&
+        thisBranch.category.toLowerCase() !== "vuoto"
           ? products.filter(
               (product) => product.category === thisBranch.category
             )
           : thisBranch.category.toLowerCase() === "all"
           ? products
-          : thisBranch.category.toLowerCase() !== "vuoto"
-          ? []
-          : "";
+          : [];
 
       const newBranches = [...otherBranches, thisBranch];
       dispatch({ type: "GET_BRANCH_PRODUCTS", payload: newBranches });
     }
   }, []);
+
+  const addProducts = () => {
+    const new2Branch = {
+      ...thisBranch,
+      products: [...thisBranch.products, ...selectedProducts],
+    };
+    const new2Branches = [...otherBranches, new2Branch];
+    dispatch({ type: "ADD_PRODUCT", payload: new2Branches });
+    localStorage.setItem("branches", JSON.stringify(new2Branches));
+  };
 
   const direction = `/dashboard`;
 
@@ -109,7 +120,13 @@ const BranchPage = () => {
       </div>
       {storedName === "admin" && (
         <button
-          onClick={() => dispatch({ type: "ADD_PRODUCT_CONDITION" })}
+          onClick={() => {
+            setSelectedProducts([]);
+            dispatch({ type: "ADD_PRODUCT_CONDITION" });
+            if (deleteProductCondition) {
+              dispatch({ type: "DELETE_PRODUCT_CONDITION" });
+            }
+          }}
           style={{ right: addProductCondition ? "-300px" : "" }}
           className={styles.addProductButton}
         >
@@ -129,12 +146,17 @@ const BranchPage = () => {
           style={{
             transform: addProductCondition
               ? "translate(0)"
-              : "translate(1000px)",
+              : "translate(-1000px)",
           }}
           className={styles.swipeContainer}
         >
-          <AddProductModal />
+          <AddProductModal setSelectedProducts={setSelectedProducts} />
         </div>
+        {selectedProducts.length >= 1 && (
+          <button onClick={addProducts} className={styles.applyAddProduct}>
+            Aggiungi prodotti
+          </button>
+        )}
       </div>
 
       <div

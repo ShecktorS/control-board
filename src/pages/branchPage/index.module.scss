@@ -152,5 +152,21 @@
       transition: transform 1s ease;
       overflow-y: scroll;
     }
+    .applyAddProduct {
+      position: absolute;
+      right: 40px;
+      bottom: 10px;
+      height: 50px;
+      background-color: $primary-button;
+      color: $secondary;
+      border: none;
+      border-radius: 30px;
+      width: 200px;
+      font-weight: bold;
+      font-size: 1em;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      box-shadow: 5px, 5px, 5px, $primary-alpha;
+    }
   }
 }

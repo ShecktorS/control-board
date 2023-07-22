@@ -1,10 +1,43 @@
+import { useContext, useEffect, useState } from "react";
 import styles from "./index.module.scss";
+import { Context } from "../../store";
+import { AiOutlineUpCircle } from "react-icons/ai";
 
-const MiniProductToAdd = ({ product }) => {
+const MiniProductToAdd = ({ product, setSelectedProducts }) => {
+  const [selected, select] = useState(false);
+  const { state } = useContext(Context);
+
+  useEffect(() => {
+    if (!state.visualCondition.addProductCondition) {
+      select(false);
+    }
+  }, [state.visualCondition.addProductCondition]);
+
   return (
-    <div className={styles.MiniProductToAdd}>
+    <div
+      onClick={(e) => {
+        e.stopPropagation();
+        select(true);
+        setSelectedProducts((prev) => [...prev, product]);
+      }}
+      className={styles.MiniProductToAdd}
+    >
       <img src={product.image} alt="object image" />
       <h4>{product.title.slice(0, 34)}</h4>
+      <div
+        onClick={(e) => {
+          e.stopPropagation();
+          select(false);
+          setSelectedProducts((prev) =>
+            prev.filter((productAdded) => productAdded.id != product.id)
+          );
+        }}
+        className={`${styles.overlaySelected} ${
+          selected && styles.showOverlay
+        }`}
+      >
+        <AiOutlineUpCircle />
+      </div>
     </div>
   );
 };

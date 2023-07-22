@@ -1,19 +1,53 @@
 .MiniProductToAdd {
-  width: 160px;
+  box-sizing: border-box;
+  width: 180px;
+  height: 250px;
+  border-radius: 20px;
+  background-color: $secondary;
+  padding: 10px;
+  cursor: pointer;
+  position: relative;
+
+  &:hover {
+    filter: brightness(1.1);
+  }
 
   img {
     height: 150px;
     aspect-ratio: 1/1;
     object-fit: contain;
-    cursor: pointer;
-    //mix-blend-mode: multiply;
 
-    &:hover {
-      filter: contrast(0.8);
-    }
+    mix-blend-mode: multiply;
   }
 
   h4 {
     margin: 0;
+  }
+
+  .overlaySelected {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    backdrop-filter: BLUR(5px);
+    z-index: -1;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    color: $secondary;
+
+    & > * {
+      background-color: $primary-button;
+      border-radius: 50%;
+      padding: 5px;
+    }
+  }
+
+  .showOverlay {
+    z-index: 1;
+    opacity: 1;
   }
 }
